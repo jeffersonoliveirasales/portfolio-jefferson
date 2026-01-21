@@ -1,5 +1,12 @@
 <div class="stagger" role="region" aria-label="{{ 'projects.testimonials.aria' | translate }}">
-  <div class="stagger__stage">
+  <div
+    class="stagger__stage"
+    draggable="false"
+    (pointerdown)="onPointerDown($event)"
+    (pointermove)="onPointerMove($event)"
+    (pointerup)="onPointerUp($event)"
+    (pointercancel)="onPointerUp($event)"
+  >
     <article
       *ngFor="let item of cards; index as i; trackBy: trackById"
       class="stagger-card"
@@ -55,6 +62,4 @@
       </button>
     </div>
   </div>
-
-  <p class="stagger__hint">{{ 'projects.testimonials.hint' | translate }}</p>
 </div>

@@ -17,7 +17,19 @@ export function setupGsapReveal(
 ): void {
   if (prefersReducedMotion()) return;
 
-  const root = options.root ?? null;
+  const resolveRoot = (candidate: Element | null | undefined): Element | null => {
+    if (!candidate) return null;
+    if (!(candidate instanceof HTMLElement)) return candidate;
+
+    const style = window.getComputedStyle(candidate);
+    const overflowY = style.overflowY;
+    const canScroll = overflowY === 'auto' || overflowY === 'scroll';
+    if (!canScroll) return null;
+    if (candidate.scrollHeight <= candidate.clientHeight) return null;
+    return candidate;
+  };
+
+  const root = resolveRoot(options.root ?? null);
 
   const targets = el.querySelectorAll('[data-reveal]');
   if (!targets.length) return;
@@ -48,7 +60,7 @@ export function setupGsapReveal(
         gsap.set(targets, { autoAlpha: 0, y: 18 });
       }
     },
-    { root, threshold: [0.35, 0.55] }
+    { root, threshold: [0.12, 0.22] }
   );
 
   observer.observe(el);

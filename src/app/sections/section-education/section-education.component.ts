@@ -1,6 +1,7 @@
 import {
   AfterViewInit,
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   DestroyRef,
   ElementRef,
@@ -32,8 +33,11 @@ type EducationItem = {
 export class SectionEducationComponent implements AfterViewInit {
   private readonly host = inject(ElementRef<HTMLElement>);
   private readonly destroyRef = inject(DestroyRef);
+  private readonly cdr = inject(ChangeDetectorRef);
 
   protected activeIndex = 0;
+
+  private useBodyScroll = false;
 
   protected readonly items: EducationItem[] = [
     {
@@ -69,25 +73,13 @@ export class SectionEducationComponent implements AfterViewInit {
     return this.host.nativeElement.querySelector('.edu-sticky__scroll');
   }
 
-  protected onScroll(container: HTMLElement): void {
-    const blocks = Array.from(container.querySelectorAll<HTMLElement>('[data-edu-block]'));
+  private isMobileLayout(): boolean {
+    return typeof window !== 'undefined' && window.matchMedia?.('(max-width: 980px)')?.matches === true;
+  }
+
+  private updateActiveFromBlocks(blocks: HTMLElement[], containerRect: DOMRect, midFactor: number): void {
     if (!blocks.length) return;
 
-    if (container.scrollTop <= 2) {
-      if (this.activeIndex !== 0) this.activeIndex = 0;
-      return;
-    }
-
-    const scrollBottom = container.scrollTop + container.clientHeight;
-    if (scrollBottom >= container.scrollHeight - 8) {
-      const lastIndex = blocks.length - 1;
-      if (this.activeIndex !== lastIndex) {
-        this.activeIndex = lastIndex;
-      }
-      return;
-    }
-
-    const containerRect = container.getBoundingClientRect();
     const containerMid = containerRect.top + containerRect.height * 0.5;
 
     let bestIndex = 0;
@@ -95,7 +87,7 @@ export class SectionEducationComponent implements AfterViewInit {
 
     blocks.forEach((el, idx) => {
       const r = el.getBoundingClientRect();
-      const elMid = r.top + r.height * 0.35;
+      const elMid = r.top + r.height * midFactor;
       const dist = Math.abs(containerMid - elMid);
 
       if (dist < bestDistance) {
@@ -106,7 +98,38 @@ export class SectionEducationComponent implements AfterViewInit {
 
     if (bestIndex !== this.activeIndex) {
       this.activeIndex = bestIndex;
+      this.cdr.markForCheck();
     }
+  }
+
+  protected onScroll(container: HTMLElement): void {
+    const blocks = Array.from(container.querySelectorAll<HTMLElement>('[data-edu-block]'));
+    if (!blocks.length) return;
+
+    if (container.scrollTop <= 2) {
+      if (this.activeIndex !== 0) this.activeIndex = 0;
+      this.cdr.markForCheck();
+      return;
+    }
+
+    const scrollBottom = container.scrollTop + container.clientHeight;
+    if (scrollBottom >= container.scrollHeight - 8) {
+      const lastIndex = blocks.length - 1;
+      if (this.activeIndex !== lastIndex) {
+        this.activeIndex = lastIndex;
+        this.cdr.markForCheck();
+      }
+      return;
+    }
+
+    const containerRect = container.getBoundingClientRect();
+    this.updateActiveFromBlocks(blocks, containerRect, 0.35);
+  }
+
+  private onWindowScroll(): void {
+    const blocks = Array.from(this.host.nativeElement.querySelectorAll('[data-edu-block]')) as HTMLElement[];
+    const viewportRect = { top: 0, height: window.innerHeight } as DOMRect;
+    this.updateActiveFromBlocks(blocks, viewportRect, 0.35);
   }
 
   protected selectIndex(evt: Event, index: number): void {
@@ -126,8 +149,12 @@ export class SectionEducationComponent implements AfterViewInit {
       return;
     }
 
-    const top = target.offsetTop - 10;
-    container.scrollTo({ top, behavior: 'smooth' });
+    if (this.useBodyScroll) {
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+      const top = target.offsetTop - 10;
+      container.scrollTo({ top, behavior: 'smooth' });
+    }
 
     this.activeIndex = index;
   }
@@ -143,6 +170,28 @@ export class SectionEducationComponent implements AfterViewInit {
     setupGsapReveal(this.host.nativeElement, this.destroyRef, { root });
 
     const container = this.container;
-    if (container) this.onScroll(container);
+    if (container) {
+      this.useBodyScroll = this.isMobileLayout();
+      if (!this.useBodyScroll) this.onScroll(container);
+    }
+
+    if (this.useBodyScroll) {
+      let rafId = 0;
+      const onScroll = () => {
+        if (rafId) return;
+        rafId = window.requestAnimationFrame(() => {
+          rafId = 0;
+          this.onWindowScroll();
+        });
+      };
+
+      window.addEventListener('scroll', onScroll, { passive: true });
+      this.destroyRef.onDestroy(() => {
+        window.removeEventListener('scroll', onScroll);
+        if (rafId) window.cancelAnimationFrame(rafId);
+      });
+
+      this.onWindowScroll();
+    }
   }
 }

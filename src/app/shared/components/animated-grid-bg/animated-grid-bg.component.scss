@@ -4,6 +4,7 @@
   pointer-events: none;
   z-index: 0;
   display: block;
+  overflow: hidden;
 }
 
 .grid {
@@ -44,4 +45,11 @@
   opacity: 1;
   fill-opacity: 0;
   will-change: opacity, transform;
+}
+
+@media (max-width: 900px) {
+  :host {
+    position: fixed;
+    overflow: clip;
+  }
 }

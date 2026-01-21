@@ -85,9 +85,20 @@ export class App implements AfterViewInit {
 
     if (!container || sectionEls.length === 0) return;
 
+    const isContainerScrollable = () => {
+      const style = window.getComputedStyle(container);
+      const overflowY = style.overflowY;
+      const canScroll = overflowY === 'auto' || overflowY === 'scroll';
+      return canScroll && container.scrollHeight > container.clientHeight;
+    };
+
+    const useBodyScroll = !isContainerScrollable();
+    const root: Element | null = useBodyScroll ? null : container;
+
     const updateActive = () => {
-      const containerRect = container.getBoundingClientRect();
-      const centerY = containerRect.top + containerRect.height / 2;
+      const containerRect = root
+        ? (root as HTMLElement).getBoundingClientRect()
+        : ({ top: 0, bottom: window.innerHeight, height: window.innerHeight } as DOMRect);
 
       const visible = sectionEls
         .map((el) => ({ el, rect: el.getBoundingClientRect() }))
@@ -95,12 +106,22 @@ export class App implements AfterViewInit {
 
       if (visible.length === 0) return;
 
-      const closest = visible
-        .map(({ el, rect }) => ({
-          el,
-          dist: Math.abs(rect.top + rect.height / 2 - centerY)
-        }))
-        .sort((a, b) => a.dist - b.dist)[0];
+      const closest = useBodyScroll
+        ? visible
+            .map(({ el, rect }) => ({
+              el,
+              dist: Math.abs(rect.top)
+            }))
+            .sort((a, b) => a.dist - b.dist)[0]
+        : (() => {
+            const centerY = containerRect.top + containerRect.height / 2;
+            return visible
+              .map(({ el, rect }) => ({
+                el,
+                dist: Math.abs(rect.top + rect.height / 2 - centerY)
+              }))
+              .sort((a, b) => a.dist - b.dist)[0];
+          })();
 
       const id = closest?.el.getAttribute('id') as (typeof this.sections)[number]['id'] | null;
       if (id) this.activeSectionId.set(id);
@@ -111,7 +132,7 @@ export class App implements AfterViewInit {
         if (entries.some((e) => e.isIntersecting)) updateActive();
       },
       {
-        root: container,
+        root,
         threshold: [0.15, 0.35, 0.55, 0.75]
       }
     );
@@ -127,13 +148,17 @@ export class App implements AfterViewInit {
       });
     };
 
-    container.addEventListener('scroll', onScroll, { passive: true });
+    const scrollTarget: EventTarget = useBodyScroll ? window : container;
+    scrollTarget.addEventListener('scroll', onScroll, { passive: true } as AddEventListenerOptions);
 
     updateActive();
 
+    window.requestAnimationFrame(() => updateActive());
+    window.setTimeout(() => updateActive(), 120);
+
     this.destroyRef.onDestroy(() => {
       observer.disconnect();
-      container.removeEventListener('scroll', onScroll);
+      scrollTarget.removeEventListener('scroll', onScroll);
       if (rafId) window.cancelAnimationFrame(rafId);
     });
   }

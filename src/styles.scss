@@ -40,6 +40,13 @@ body {
   overflow-x: hidden;
 }
 
+@media (max-width: 820px) {
+  body {
+    overflow-y: auto;
+    overscroll-behavior-y: none;
+  }
+}
+
 a {
   color: inherit;
 }
@@ -57,6 +64,15 @@ a {
   width: 100%;
   max-width: 1180px;
   margin: 0 auto;
+}
+
+@media (max-width: 820px) {
+  .section {
+    height: auto;
+    min-height: auto;
+    align-items: start;
+    overflow: visible;
+  }
 }
 
 .section__header {

@@ -396,6 +396,11 @@
 }
 
 @media (max-width: 980px) {
+  .section {
+    min-height: auto;
+    padding-bottom: 24px;
+  }
+
   .contact {
     grid-template-columns: 1fr;
   }

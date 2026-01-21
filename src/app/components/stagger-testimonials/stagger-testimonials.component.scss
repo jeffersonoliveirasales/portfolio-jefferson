@@ -13,6 +13,8 @@
   height: var(--stagger-height, 560px);
   overflow: visible;
   padding-inline: clamp(14px, 2vw, 32px);
+  padding-bottom: 84px;
+  touch-action: pan-y;
   background: radial-gradient(
     900px 420px at 50% 55%,
     rgba(255, 255, 255, 0.05) 0%,
@@ -28,7 +30,7 @@
   left: 50%;
   bottom: 16px;
   transform: translateX(-50%);
-  z-index: 30;
+  z-index: 80;
   display: flex;
   gap: 14px;
 }
@@ -203,6 +205,10 @@
 }
 
 @media (max-width: 640px) {
+  .stagger__hint {
+    padding-bottom: 40px;
+  }
+
   .stagger__stage {
     height: var(--stagger-height, 460px);
   }

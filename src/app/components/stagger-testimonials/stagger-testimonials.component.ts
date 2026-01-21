@@ -1,6 +1,7 @@
 import {
   AfterViewInit,
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   HostListener,
 } from '@angular/core';
@@ -26,8 +27,16 @@ type ProjectCard = {
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class StaggerTestimonialsComponent implements AfterViewInit {
+  constructor(private readonly cdr: ChangeDetectorRef) {}
+
   protected cardSize = 365;
   protected activeIndex = 0;
+
+  private pointerDown = false;
+  private pointerId: number | null = null;
+  private startX = 0;
+  private startY = 0;
+  private swiped = false;
 
   protected cards: ReadonlyArray<ProjectCard> = [
     {
@@ -107,6 +116,7 @@ export class StaggerTestimonialsComponent implements AfterViewInit {
 
     this.activeIndex = (this.activeIndex + steps) % len;
     if (this.activeIndex < 0) this.activeIndex += len;
+    this.cdr.markForCheck();
   }
 
   protected getPosition(index: number): number {
@@ -151,6 +161,42 @@ export class StaggerTestimonialsComponent implements AfterViewInit {
   protected onCardClick(pos: number): void {
     if (pos === 0) return;
     this.move(pos > 0 ? 1 : -1);
+  }
+
+  protected onPointerDown(event: PointerEvent): void {
+    // só botão primário/toque
+    if (event.pointerType === 'mouse' && event.button !== 0) return;
+
+    this.pointerDown = true;
+    this.pointerId = event.pointerId;
+    this.startX = event.clientX;
+    this.startY = event.clientY;
+    this.swiped = false;
+  }
+
+  protected onPointerMove(event: PointerEvent): void {
+    if (!this.pointerDown) return;
+    if (this.pointerId !== event.pointerId) return;
+    if (this.swiped) return;
+
+    const dx = event.clientX - this.startX;
+    const dy = event.clientY - this.startY;
+
+    // detecta intenção horizontal
+    if (Math.abs(dx) < 28) return;
+    if (Math.abs(dx) < Math.abs(dy)) return;
+
+    // swipe horizontal: evita scroll durante o gesto
+    event.preventDefault();
+
+    this.swiped = true;
+    this.move(dx < 0 ? 1 : -1);
+  }
+
+  protected onPointerUp(event: PointerEvent): void {
+    if (this.pointerId !== event.pointerId) return;
+    this.pointerDown = false;
+    this.pointerId = null;
   }
 
   protected trackById(_: number, item: ProjectCard): number {

@@ -137,6 +137,10 @@
 }
 
 @media (max-width: 980px) {
+  .section {
+    padding-top: 28px;
+  }
+
   .exp-accordion {
     max-height: calc(100vh - 280px);
   }

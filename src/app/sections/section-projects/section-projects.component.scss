@@ -6,6 +6,8 @@ app-stagger-testimonials {
 
 @media (max-width: 980px) {
   app-stagger-testimonials {
-    height: calc(100vh - 260px);
+    height: auto;
+    min-height: 520px;
+    margin-bottom: 56px;
   }
 }
