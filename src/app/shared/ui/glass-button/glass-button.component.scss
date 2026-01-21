@@ -1,0 +1,226 @@
+.glass-button-wrap {
+  position: relative;
+  display: inline-block;
+  border-radius: 999px;
+  isolation: isolate;
+  max-width: 100%;
+}
+
+.glass-button-wrap--full {
+  display: block;
+  width: 100%;
+}
+
+.glass-button {
+  width: 100%;
+  border: 0;
+  padding: 0;
+  border-radius: 999px;
+  cursor: pointer;
+  position: relative;
+
+  --mx: 50%;
+  --my: 50%;
+
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(18px) saturate(160%) contrast(110%);
+  -webkit-backdrop-filter: blur(18px) saturate(160%) contrast(110%);
+  -webkit-tap-highlight-color: transparent;
+  transform: translateZ(0);
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.glass-button::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.10), rgba(255, 255, 255, 0.02));
+
+  border: 1px solid rgba(255, 255, 255, 0.16);
+
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.24),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.38),
+    0 18px 45px rgba(0, 0, 0, 0.55),
+    0 0 0 1px rgba(255, 255, 255, 0.05);
+
+  transition:
+    border-color 180ms ease,
+    box-shadow 220ms ease,
+    transform 180ms ease,
+    filter 220ms ease;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.glass-button::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+
+  background:
+    radial-gradient(
+      120px 90px at var(--mx) var(--my),
+      rgba(255, 255, 255, 0.28),
+      rgba(255, 255, 255, 0.12) 35%,
+      rgba(255, 255, 255, 0.00) 65%
+    );
+
+  opacity: 0;
+  transition: opacity 160ms ease;
+  z-index: 0;
+}
+
+.glass-button:hover::after {
+  opacity: 1;
+}
+
+.glass-button.is-disabled,
+.glass-button:disabled {
+  cursor: not-allowed;
+}
+
+.glass-button-text {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 999px;
+  color: rgba(255, 255, 255, 0.92);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  user-select: none;
+
+  z-index: 1;
+  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.35);
+
+  transition: transform 180ms ease;
+}
+
+.glass-button:hover::before {
+  border-color: rgba(255, 255, 255, 0.26);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.33),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.42),
+    0 22px 55px rgba(0, 0, 0, 0.60),
+    0 0 0 1px rgba(255, 255, 255, 0.10);
+  transform: translateY(-1px);
+}
+
+.glass-button:hover::after {
+  opacity: 0.72;
+  filter: blur(11px);
+}
+
+.glass-button:active::before {
+  transform: translateY(0px);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.22),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.45),
+    0 16px 40px rgba(0, 0, 0, 0.55);
+}
+
+.glass-button:active .glass-button-text {
+  transform: translateY(0.5px);
+}
+
+.glass-button.is-disabled::before,
+.glass-button:disabled::before {
+  opacity: 0.55;
+  filter: saturate(85%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.16),
+    0 14px 28px rgba(0, 0, 0, 0.45);
+}
+
+.glass-button.is-disabled::after,
+.glass-button:disabled::after {
+  opacity: 0.25;
+}
+
+.glass-button:focus-visible {
+  outline: none;
+}
+
+.glass-button:focus-visible::before {
+  border-color: rgba(255, 255, 255, 0.34);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.28),
+    0 18px 55px rgba(0, 0, 0, 0.62),
+    0 0 0 3px rgba(255, 255, 255, 0.12);
+}
+
+.glass-button-shadow {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: 999px;
+
+  pointer-events: none;
+
+  background:
+    radial-gradient(80% 120% at 50% 115%, rgba(0, 0, 0, 0.75), transparent 60%),
+    radial-gradient(70% 120% at 50% 0%, rgba(255, 255, 255, 0.06), transparent 55%);
+
+  transform: translateY(14px) scale(0.97);
+  filter: blur(22px);
+  opacity: 0.90;
+}
+
+/* Sizes: button wrapper variants */
+.glass-button--default {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.glass-button--sm {
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.glass-button--lg {
+  font-size: 1.125rem;
+  font-weight: 600;
+}
+
+.glass-button--icon {
+  height: 40px;
+  width: 40px;
+}
+
+/* Sizes: padding/content variants */
+.glass-button-text--default {
+  padding: 14px 24px;
+}
+
+.glass-button-text--sm {
+  padding: 8px 16px;
+}
+
+.glass-button-text--lg {
+  padding: 16px 32px;
+}
+
+.glass-button-text--icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  width: 40px;
+  padding: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .glass-button::before,
+  .glass-button::after,
+  .glass-button-text {
+    transition: none !important;
+  }
+}

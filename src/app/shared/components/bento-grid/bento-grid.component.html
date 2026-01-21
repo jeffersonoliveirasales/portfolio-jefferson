@@ -1,0 +1,156 @@
+<div class="bento-grid" data-reveal>
+  <article
+    *ngFor="let item of items; trackBy: trackByIndex"
+    class="bento-item card app-card--interactive"
+    data-reveal
+    [class.bento-item--span-2]="item.colSpan === 2"
+    [class.app-card--active]="item.hasPersistentHover"
+    [class.is-clickable]="clickable"
+    [attr.tabindex]="0"
+    [attr.role]="clickable ? 'button' : null"
+    [attr.aria-label]="clickable ? ('Abrir: ' + item.title) : null"
+    (click)="onItemClick(item)"
+    (keydown.enter)="onItemClick(item)"
+    (keydown.space)="$event.preventDefault(); onItemClick(item)"
+  >
+    <div
+      class="bento-item__overlay"
+      [class.bento-item__overlay--active]="item.hasPersistentHover"
+      aria-hidden="true"
+    ></div>
+
+    <div class="bento-item__content">
+      <div class="bento-item__top">
+        <div class="bento-item__icon" [class]="'bento-item__icon ' + iconColorClass(item.icon)">
+          <svg viewBox="0 0 24 24" width="16" height="16" focusable="false" aria-hidden="true">
+            <ng-container [ngSwitch]="item.icon">
+              <ng-container *ngSwitchCase="'trending-up'">
+                <path
+                  d="M3 17l6-6 4 4 7-7"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M14 8h6v6"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </ng-container>
+
+              <ng-container *ngSwitchCase="'check-circle'">
+                <path
+                  d="M22 11.08V12a10 10 0 1 1-5.93-9.14"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M22 4L12 14.01l-3-3"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </ng-container>
+
+              <ng-container *ngSwitchCase="'video'">
+                <path
+                  d="M23 7l-7 5 7 5V7z"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <rect
+                  x="1"
+                  y="5"
+                  width="15"
+                  height="14"
+                  rx="2"
+                  ry="2"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                />
+              </ng-container>
+
+              <ng-container *ngSwitchCase="'globe'">
+                <circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2" />
+                <path
+                  d="M2 12h20"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                />
+                <path
+                  d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                />
+              </ng-container>
+
+              <ng-container *ngSwitchCase="'clock'">
+                <circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2" />
+                <path
+                  d="M12 6v6l4 2"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </ng-container>
+
+              <ng-container *ngSwitchCase="'star'">
+                <path
+                  d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 22 12 18.77 5.82 22 7 14.14l-5-4.87 6.91-1.01L12 2z"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linejoin="round"
+                />
+              </ng-container>
+            </ng-container>
+          </svg>
+        </div>
+
+        <span
+          class="bento-item__status"
+          [class]="'bento-item__status ' + statusClass(item.status)"
+          *ngIf="item.status as status"
+        >
+          {{ status }}
+        </span>
+      </div>
+
+      <div class="bento-item__body">
+        <h3 class="bento-item__title">
+          {{ item.title }}
+          <span class="bento-item__meta" *ngIf="item.meta as meta">{{ meta }}</span>
+        </h3>
+        <p class="bento-item__desc">{{ item.description }}</p>
+      </div>
+
+      <div class="bento-item__bottom">
+        <div class="bento-item__tags" *ngIf="item.tags?.length">
+          <span class="bento-item__tag" *ngFor="let tag of item.tags" [attr.title]="'Tag: ' + tag">
+            #{{ tag }}
+          </span>
+        </div>
+        <span class="bento-item__cta" *ngIf="item.cta || clickable">{{ item.cta || 'Explore →' }}</span>
+      </div>
+    </div>
+  </article>
+</div>

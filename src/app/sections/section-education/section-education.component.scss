@@ -1,0 +1,155 @@
+.edu-sticky {
+  margin-top: 26px;
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 18px;
+
+  border-radius: 0;
+  padding: 0;
+
+  background: transparent;
+  border: 0;
+}
+
+.edu-sticky__scroll {
+  height: 30rem;
+  overflow-y: auto;
+
+  direction: rtl;
+
+  scroll-snap-type: y proximity;
+  scroll-padding-top: 10px;
+  overscroll-behavior: contain;
+
+  padding-right: 0;
+  padding-left: 22px;
+}
+
+.edu-sticky__list {
+  max-width: 60ch;
+  direction: ltr;
+}
+
+.edu-sticky__block {
+  margin: 0;
+  padding: 0;
+
+  scroll-snap-align: start;
+  transition: opacity 220ms ease, transform 220ms ease, filter 220ms ease;
+  opacity: 0.28;
+  transform: translateY(16px);
+  filter: blur(0.2px);
+}
+
+.edu-sticky__block.is-active {
+  opacity: 1;
+  transform: translateY(0);
+  filter: none;
+}
+
+.edu-sticky__block + .edu-sticky__block {
+  margin-top: 44px;
+}
+
+.edu-sticky__blockBtn {
+  width: 100%;
+  text-align: left;
+  padding: 6px 0;
+  border-radius: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+
+  transition: transform 180ms ease;
+}
+
+.edu-sticky__block.is-active .edu-sticky__blockBtn {
+  opacity: 1;
+}
+
+.edu-sticky__blockBtn:hover {
+  opacity: 1;
+  transform: translateY(-1px);
+}
+
+.edu-sticky__blockBtn:focus-visible {
+  outline: 2px solid rgba(255, 255, 255, 0.16);
+  outline-offset: 2px;
+}
+
+.edu-sticky__title {
+  margin: 0;
+  font-weight: 900;
+  font-size: 1.22rem;
+  color: rgba(255, 255, 255, 0.92);
+  letter-spacing: -0.02em;
+  text-align: center;
+}
+
+.edu-sticky__text {
+  margin: 10px 0 0;
+  color: rgba(255, 255, 255, 0.72);
+  line-height: 1.7;
+  font-size: 1.02rem;
+  white-space: pre-line;
+}
+
+.edu-sticky__spacer {
+  height: 220px;
+}
+
+.edu-sticky__right {
+  position: sticky;
+  top: 12px;
+  align-self: start;
+  display: none;
+}
+
+@media (min-width: 980px) {
+  .edu-sticky__right {
+    display: block;
+  }
+}
+
+.edu-preview {
+  position: relative;
+  height: 18rem;
+  border-radius: 16px;
+  overflow: hidden;
+
+  border: 0;
+  background: transparent;
+}
+
+.edu-preview__img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: saturate(0.95) contrast(1.05);
+  transform: scale(1.02);
+}
+
+
+
+@media (max-width: 980px) {
+  .edu-sticky {
+    height: auto;
+    grid-template-columns: 1fr;
+    padding: 0;
+    border: 0;
+    background: transparent;
+  }
+
+  .edu-sticky__scroll {
+    height: auto;
+    overflow: visible;
+    padding-right: 0;
+    scroll-snap-type: none;
+  }
+
+  .edu-sticky__spacer {
+    display: none;
+  }
+}

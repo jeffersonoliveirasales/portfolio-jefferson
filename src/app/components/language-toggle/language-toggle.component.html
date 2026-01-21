@@ -1,0 +1,26 @@
+<div class="lang" role="radiogroup" aria-label="Language selector">
+  <button
+    id="lang-pt"
+    type="button"
+    class="lang__btn"
+    role="radio"
+    [attr.aria-checked]="currentLang === 'pt'"
+    [class.is-active]="currentLang === 'pt'"
+    (click)="setLang('pt')"
+  >
+    {{ 'language.pt' | translate }}
+  </button>
+  <button
+    id="lang-en"
+    type="button"
+    class="lang__btn"
+    role="radio"
+    [attr.aria-checked]="currentLang === 'en'"
+    [class.is-active]="currentLang === 'en'"
+    (click)="setLang('en')"
+  >
+    {{ 'language.en' | translate }}
+  </button>
+
+  <span class="lang__pill" aria-hidden="true"></span>
+</div>

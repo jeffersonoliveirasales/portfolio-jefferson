@@ -1,0 +1,82 @@
+<section class="section" id="cursos" data-section>
+  <div class="section__inner">
+    <header class="section__header" data-reveal>
+      <p class="section__eyebrow">{{ 'courses.eyebrow' | translate }}</p>
+      <app-fx-title
+        class="section__title section__title--shine"
+        [text]="'courses.title' | translate"
+        size="section"
+      ></app-fx-title>
+      <p class="section__lead">{{ 'courses.lead' | translate }}</p>
+    </header>
+
+    <div class="courses" data-reveal>
+      <div class="courses__left">
+        <div class="card">
+          <h3 class="card__title">{{ 'courses.howTitle' | translate }}</h3>
+          <p class="card__text">{{ 'courses.howText' | translate }}</p>
+        </div>
+
+        <div class="card">
+          <h3 class="card__title">{{ 'courses.chipsTitle' | translate }}</h3>
+          <div class="chips">
+            <span class="chip">{{ 'courses.chips.dotnet' | translate }}</span>
+            <span class="chip">{{ 'courses.chips.csharp' | translate }}</span>
+            <span class="chip">{{ 'courses.chips.angular' | translate }}</span>
+            <span class="chip">{{ 'courses.chips.restApis' | translate }}</span>
+            <span class="chip">{{ 'courses.chips.sqlServer' | translate }}</span>
+            <span class="chip">{{ 'courses.chips.oracle' | translate }}</span>
+            <span class="chip">{{ 'courses.chips.efCore' | translate }}</span>
+            <span class="chip">{{ 'courses.chips.cleanArchitecture' | translate }}</span>
+            <span class="chip">{{ 'courses.chips.ddd' | translate }}</span>
+            <span class="chip">{{ 'courses.chips.solid' | translate }}</span>
+            <span class="chip">{{ 'courses.chips.cleanCode' | translate }}</span>
+            <span class="chip">{{ 'courses.chips.azureDevops' | translate }}</span>
+            <span class="chip">{{ 'courses.chips.cicd' | translate }}</span>
+            <span class="chip">{{ 'courses.chips.sonarQube' | translate }}</span>
+            <span class="chip">{{ 'courses.chips.gitflow' | translate }}</span>
+            <span class="chip">{{ 'courses.chips.observability' | translate }}</span>
+            <span class="chip">{{ 'courses.chips.scrum' | translate }}</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="courses__right" [attr.aria-label]="'courses.accordion.aria' | translate">
+        <div class="img-accordion" role="list">
+          @for (item of accordionItems; track item.id; let i = $index) {
+            <button
+              type="button"
+              class="img-accordion__item"
+              role="listitem"
+              [class.is-active]="i === activeIndex"
+              (mouseenter)="setActive(i)"
+              (focus)="setActive(i)"
+              (click)="toggleActive(i)"
+              [attr.aria-label]="item.titleKey | translate"
+              [attr.aria-pressed]="i === activeIndex"
+            >
+              <img
+                class="img-accordion__img"
+                [src]="item.imageUrl"
+                [alt]="item.titleKey | translate"
+                loading="lazy"
+                decoding="async"
+                fetchpriority="low"
+                referrerpolicy="no-referrer"
+                width="400"
+                height="450"
+                (error)="onImgError($event)"
+              />
+
+              <span class="img-accordion__overlay" aria-hidden="true"></span>
+
+              <span class="img-accordion__caption">
+                {{ item.titleKey | translate }}
+              </span>
+            </button>
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="LinkedIn icon">
+  <defs>
+    <!-- Fundo azul (topo mais claro) -->
+    <linearGradient id="bg" x1="140" y1="120" x2="360" y2="420" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#53C9FF"/>
+      <stop offset="0.45" stop-color="#1D86E6"/>
+      <stop offset="1" stop-color="#0B4FAE"/>
+    </linearGradient>
+
+    <!-- brilho interno -->
+    <linearGradient id="shine" x1="170" y1="160" x2="350" y2="310" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#FFFFFF" stop-opacity="0.26"/>
+      <stop offset="0.55" stop-color="#FFFFFF" stop-opacity="0.10"/>
+      <stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/>
+    </linearGradient>
+
+    <!-- sombra/glow -->
+    <filter id="glow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="0" stdDeviation="14" flood-color="#2AA6FF" flood-opacity="0.35"/>
+      <feDropShadow dx="0" dy="18" stdDeviation="16" flood-color="#000" flood-opacity="0.35"/>
+    </filter>
+
+    <!-- sombra leve do "in" -->
+    <filter id="textShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="6" stdDeviation="6" flood-color="#000" flood-opacity="0.28"/>
+    </filter>
+  </defs>
+
+  <g filter="url(#glow)">
+    <!-- Base -->
+    <rect x="112" y="112" width="288" height="288" rx="44" fill="url(#bg)"/>
+
+    <!-- Borda dupla -->
+    <rect x="112" y="112" width="288" height="288" rx="44"
+          fill="none" stroke="#7FE0FF" stroke-opacity="0.75" stroke-width="10"/>
+    <rect x="124" y="124" width="264" height="264" rx="38"
+          fill="none" stroke="#0A3F93" stroke-opacity="0.35" stroke-width="8"/>
+
+    <!-- brilho diagonal -->
+    <path d="M150 148
+             Q256 120 362 154
+             Q334 260 232 300
+             Q176 322 150 352
+             Z"
+          fill="url(#shine)"/>
+
+    <!-- "in" -->
+    <g filter="url(#textShadow)">
+      <!-- i -->
+      <circle cx="205" cy="212" r="22" fill="#FFFFFF"/>
+      <rect x="183" y="248" width="44" height="122" rx="12" fill="#FFFFFF"/>
+
+      <!-- n -->
+      <path d="M248 252
+               h44
+               c0 0 0 0 0 0
+               c0 0 0 0 0 0
+               c0 0 22 -18 54 -18
+               c44 0 64 28 64 78
+               v78
+               c0 8 -6 14 -14 14
+               h-18
+               c-8 0 -14 -6 -14 -14
+               v-76
+               c0 -26 -10 -40 -30 -40
+               c-20 0 -32 14 -32 34
+               v82
+               c0 8 -6 14 -14 14
+               h-18
+               c-8 0 -14 -6 -14 -14
+               v-124
+               c0 -8 6 -14 14 -14
+               Z"
+            fill="#FFFFFF"/>
+    </g>
+  </g>
+</svg>

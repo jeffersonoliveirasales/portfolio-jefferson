@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Jefferson icon">
+  <defs>
+    <!-- Azul do J (topo mais claro, base mais escura) -->
+    <linearGradient id="gJ" x1="140" y1="90" x2="360" y2="420" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#1CE7FF"/>
+      <stop offset="0.55" stop-color="#1788FF"/>
+      <stop offset="1" stop-color="#0A4DFF"/>
+    </linearGradient>
+
+    <!-- Roxo do triângulo -->
+    <linearGradient id="gP" x1="380" y1="110" x2="450" y2="190" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#B042FF"/>
+      <stop offset="1" stop-color="#6A00FF"/>
+    </linearGradient>
+
+    <!-- brilho/sombra bem sutil (opcional) -->
+    <filter id="softGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="10" stdDeviation="10" flood-color="#000" flood-opacity="0.28"/>
+      <feDropShadow dx="0" dy="0" stdDeviation="6" flood-color="#1CE7FF" flood-opacity="0.10"/>
+    </filter>
+  </defs>
+
+  <!-- Grupo do ícone -->
+  <g filter="url(#softGlow)">
+    <!-- J (feito em 2 polígonos para ficar bem “clean”) -->
+    <!-- Topo + haste -->
+    <path fill="url(#gJ)" d="
+      M 186 120
+      H 322
+      V 332
+      L 250 374
+      V 196
+      H 186
+      Z
+    "/>
+
+    <!-- “pé” inclinado -->
+    <path fill="url(#gJ)" d="
+      M 250 374
+      L 146 430
+      L 192 468
+      L 322 396
+      L 322 332
+      Z
+    "/>
+
+    <!-- triângulo roxo -->
+    <path fill="url(#gP)" d="
+      M 352 122
+      L 430 122
+      L 352 200
+      Z
+    "/>
+  </g>
+</svg>

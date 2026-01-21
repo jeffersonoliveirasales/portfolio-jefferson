@@ -1,0 +1,35 @@
+<section class="section about" id="sobre" data-section>
+  <div class="about__bg" aria-hidden="true">
+    <video
+      #bgVideo
+      class="about__bg-video"
+      src="/video/robos-xadrez.mp4"
+      autoplay
+      muted
+      loop
+      playsinline
+      defaultmuted
+      preload="metadata"
+    ></video>
+
+    <div class="about__bg-vignette"></div>
+    <div class="about__bg-grid"></div>
+    <div class="about__bg-glow"></div>
+  </div>
+
+  <div class="section__inner about__content">
+    <header class="section__header" data-reveal>
+      <p class="section__eyebrow">{{ 'about.eyebrow' | translate }}</p>
+      <app-fx-title
+        class="section__title section__title--shine"
+        [text]="'about.title' | translate"
+        size="section"
+      ></app-fx-title>
+      <p class="section__lead">
+        {{ 'about.lead' | translate }}
+      </p>
+    </header>
+
+    <app-bento-grid [items]="bentoItems" />
+  </div>
+</section>

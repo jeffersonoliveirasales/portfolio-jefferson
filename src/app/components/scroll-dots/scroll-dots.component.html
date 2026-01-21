@@ -1,0 +1,29 @@
+<nav class="dots" aria-label="Navegação por seções">
+  <ul class="dots__list">
+    @for (s of sections; track s.id) {
+      <li class="dots__item">
+        <button
+          type="button"
+          class="dot"
+          [class.is-active]="activeId === s.id"
+          (click)="navigate.emit(s.id)"
+          (mouseenter)="hoverId = s.id"
+          (mouseleave)="hoverId = null"
+          aria-label="{{ s.labelKey | translate }}"
+        >
+          <span class="dot__core" aria-hidden="true"></span>
+
+          <!-- tooltip text-only -->
+          <span
+            class="dot__label"
+            [class.is-show]="hoverId === s.id"
+          >
+            <span class="dot__labelText">
+              {{ s.labelKey | translate }}
+            </span>
+          </span>
+        </button>
+      </li>
+    }
+  </ul>
+</nav>

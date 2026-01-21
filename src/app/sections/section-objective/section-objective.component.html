@@ -1,0 +1,51 @@
+<section class="section objective" id="objetivo" data-section>
+  <div class="objective__bg" aria-hidden="true">
+    <video
+      #bgVideo
+      class="objective__bg-video"
+      appParallax
+      [parallaxSpeed]="0.09"
+      [parallaxMaxPx]="40"
+      parallaxOrigin="top"
+      src="/video/robos-pc.mp4"
+      autoplay
+      muted
+      loop
+      playsinline
+      defaultmuted
+      preload="metadata"
+    ></video>
+
+    <div class="objective__bg-vignette"></div>
+    <div
+      class="objective__bg-grid"
+      appParallax
+      [parallaxSpeed]="0.05"
+      [parallaxMaxPx]="18"
+      parallaxOrigin="center"
+    ></div>
+    <div
+      class="objective__bg-glow"
+      appParallax
+      [parallaxSpeed]="0.12"
+      [parallaxMaxPx]="44"
+      parallaxOrigin="top"
+    ></div>
+  </div>
+
+  <div class="section__inner objective__content">
+    <header class="section__header" data-reveal>
+      <p class="section__eyebrow">{{ 'objective.eyebrow' | translate }}</p>
+      <app-fx-title
+        class="section__title section__title--shine"
+        [text]="'objective.title' | translate"
+        size="section"
+      ></app-fx-title>
+      <p class="section__lead">
+        {{ 'objective.lead' | translate }}
+      </p>
+    </header>
+
+    <app-bento-grid [items]="bentoItems" />
+  </div>
+</section>

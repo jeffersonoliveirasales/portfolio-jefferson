@@ -1,0 +1,147 @@
+.courses {
+  margin-top: 26px;
+  display: grid;
+  grid-template-columns: 1fr 0.9fr;
+  gap: 18px;
+  align-items: start;
+}
+
+.courses__left {
+  display: grid;
+  gap: 18px;
+}
+
+.courses__list {
+  max-height: calc(100vh - 280px);
+  overflow: auto;
+}
+
+.courses__item {
+  padding: 12px 12px;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.courses__item + .courses__item {
+  margin-top: 10px;
+}
+
+.courses__right {
+  position: sticky;
+  top: 18px;
+}
+
+.img-accordion {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  padding: 14px;
+  overflow-x: auto;
+
+  scrollbar-gutter: stable both-edges;
+}
+
+.img-accordion__item {
+  position: relative;
+  height: 420px;
+  width: 64px;
+  flex: 0 0 auto;
+
+  border: 0;
+  padding: 0;
+  background: transparent;
+
+  border-radius: 18px;
+  overflow: hidden;
+  cursor: pointer;
+
+  transition: width 700ms ease-in-out, transform 250ms ease, filter 250ms ease;
+  outline: none;
+
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+}
+
+.img-accordion__item.is-active {
+  width: 380px;
+}
+
+.img-accordion__item:focus-visible {
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.22), 0 10px 30px rgba(0, 0, 0, 0.25);
+}
+
+.img-accordion__img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.img-accordion__overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.38);
+}
+
+.img-accordion__caption {
+  position: absolute;
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.82rem;
+  letter-spacing: 0.2px;
+
+  max-width: 340px;
+  overflow: hidden;
+
+  transition: all 300ms ease;
+}
+
+.img-accordion__item.is-active .img-accordion__caption {
+  bottom: 18px;
+  left: 50%;
+  transform: translateX(-50%) rotate(0deg);
+
+  white-space: normal;
+  text-overflow: clip;
+  display: -webkit-box;
+  line-clamp: 3;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+
+.img-accordion__item:not(.is-active) .img-accordion__caption {
+  bottom: 90px;
+  left: 50%;
+  transform: translateX(-50%) rotate(90deg);
+
+  max-width: 280px;
+
+  font-size: 0.78rem;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+@media (max-width: 980px) {
+  .courses {
+    grid-template-columns: 1fr;
+  }
+
+  .courses__list {
+    max-height: calc(100vh - 300px);
+  }
+
+  .courses__right {
+    position: relative;
+    top: auto;
+  }
+
+  .img-accordion__item {
+    height: 340px;
+  }
+
+  .img-accordion__item.is-active {
+    width: 320px;
+  }
+}

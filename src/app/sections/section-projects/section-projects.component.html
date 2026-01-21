@@ -1,0 +1,17 @@
+<section class="section" id="projetos" data-section>
+  <div class="section__inner">
+    <header class="section__header" data-reveal>
+      <p class="section__eyebrow">{{ 'projects.eyebrow' | translate }}</p>
+      <app-fx-title
+        class="section__title section__title--shine"
+        [text]="'projects.title' | translate"
+        size="section"
+      ></app-fx-title>
+      <p class="section__lead">
+        {{ 'projects.lead' | translate }}
+      </p>
+    </header>
+
+    <app-stagger-testimonials data-reveal></app-stagger-testimonials>
+  </div>
+</section>

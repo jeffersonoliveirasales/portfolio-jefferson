@@ -1,0 +1,359 @@
+{
+  "nav": {
+    "home": "Home",
+    "objective": "Objective",
+    "about": "About",
+    "legacy": "Legacy",
+    "projects": "Projects",
+    "experience": "Experience",
+    "education": "Education",
+    "courses": "Courses",
+    "skills": "Skills",
+    "contact": "Contact"
+  },
+  "hero": {
+    "name": "Jefferson Oliveira Sales",
+    "title": "Senior Full Stack — .NET & Angular",
+    "subtitle1": "API architecture, Clean Architecture, complex integrations and CI/CD (Azure DevOps).",
+    "subtitle2": "Niterói, Brazil • 14+ years in enterprise systems",
+    "ctaProjects": "View Projects",
+    "ctaContact": "Get in Touch",
+    "badgeDotnet": ".NET 6/7/8/9",
+    "badgeAngular": "Angular 20+",
+    "badgeDb": "SQL Server/Oracle",
+    "badgeDevops": "Azure DevOps",
+    "badgeSonar": "SonarQube",
+    "badgeObs": "Sentry/Elmah.io",
+    "metricYears": "14+ years",
+    "metricYearsLabel": "hands-on enterprise experience",
+    "metricArch": "Clean Architecture",
+    "metricArchLabel": "SOLID • practical DDD • integrations",
+    "metricCicd": "CI/CD",
+    "metricCicdLabel": "Azure DevOps • SonarQube • quality"
+  },
+  "objective": {
+    "eyebrow": "Career objective",
+    "title": "Senior Full Stack, focused on architecture & delivery",
+    "lead": "Work as a Senior Full Stack developer applying advanced .NET and Angular experience, API architecture, Clean Architecture, complex integrations and CI/CD — building scalable, high-performance, high-quality solutions.",
+    "cards": {
+      "scalabilityTitle": "Scalability",
+      "scalabilityText": "APIs and systems designed to scale safely.",
+      "qualityTitle": "Quality",
+      "qualityText": "SonarQube, testing and observability to reduce regressions.",
+      "deliveryTitle": "Continuous delivery",
+      "deliveryText": "Azure DevOps CI/CD and GitFlow for reliable releases."
+    }
+  },
+  "about": {
+    "eyebrow": "About",
+    "title": "Architecture, quality and impact",
+    "lead": "Senior Full Stack developer with 14+ years building mid/large enterprise systems. Specialized in .NET, C#, Angular, SQL Server/Oracle and API architecture, with delivery history at CCAA, G4F, BRQ, TIVIT and others.",
+    "cards": {
+      "archTitle": "Clean Architecture",
+      "archText": "SOLID + practical DDD, Repository + Unit of Work and standardized APIs.",
+      "integrationsTitle": "Integrations",
+      "integrationsText": "GovBR, Sankhya ERP and Microsoft Graph (SharePoint: files, children, upload).",
+      "deliveryTitle": "Delivery & Quality",
+      "deliveryText": "GitFlow, Azure DevOps CI/CD, SonarQube, testing and observability."
+    }
+  },
+  "legacy": {
+    "eyebrow": "Legacy & modernization",
+    "title": "Comfortable with legacy, efficient with modern",
+    "lead": "Solid experience with monoliths and older layers, with gradual migration to modern .NET and Angular.",
+    "cards": {
+      "legacyTitle": "Legacy technologies",
+      "legacyText": "ASP.NET WebForms, MVC 5/6, NHibernate, KnockoutJS, jQuery.",
+      "strategyTitle": "Modernization strategy",
+      "strategyText": "Modularization, internal libraries, domain refactoring and incremental migration — no big bang.",
+      "integrationsTitle": "Enterprise integrations",
+      "integrationsText": "GovBR, Sankhya ERP, Microsoft Graph API, SOAP/XML and complex business rules."
+    }
+  },
+  "education": {
+    "eyebrow": "Education",
+    "title": "Solid foundation, continuous growth",
+    "lead": "Academic background and focused training for software engineering.",
+    "cards": {
+      "degreeTitle": "Degree",
+      "degreeText": "Systems Analysis and Development — Estácio de Sá University\nStrong foundation in software engineering, focused on system architecture, web development, databases and best practices for building and evolving enterprise applications.",
+      "languagesTitle": "Languages",
+      "languagesText": "English — Wise Up\nEnglish applied to professional contexts, with emphasis on technical communication, reading documentation and consuming international technical content.",
+      "methodsTitle": "Ways of working",
+      "methodsText": "Work based on agile methods such as Scrum and Kanban, with hands-on experience managing demand, organizing workflow and tracking deliveries using Azure DevOps Boards, Jira and Trello."
+    }
+  },
+  "courses": {
+    "eyebrow": "Courses",
+    "title": "Hands-on learning",
+    "lead": "Tracks focused on Angular, Clean Code, EF Core and agile methods.",
+    "howTitle": "How I apply it day-to-day",
+    "howText": "I use these concepts to reduce legacy risk, improve API predictability and boost team experience (standards, templates and internal libraries).",
+    "chipsTitle": "Highlighted skills",
+    "chips": {
+      "cleanCode": "Clean Code",
+      "cleanArchitecture": "Clean Architecture",
+      "ddd": "DDD",
+      "solid": "SOLID",
+      "efCore": "EF Core",
+      "dotnet": ".NET",
+      "csharp": "C#",
+      "restApis": "REST APIs",
+      "sqlServer": "SQL Server",
+      "oracle": "Oracle",
+      "azureDevops": "Azure DevOps",
+      "cicd": "CI/CD",
+      "sonarQube": "SonarQube",
+      "gitflow": "GitFlow",
+      "observability": "Observability",
+      "scrum": "Scrum",
+      "angular": "Angular"
+    },
+    "accordion": {
+      "aria": "Featured courses",
+      "items": {
+        "angularCrud": "Angular: Build your first CRUD — Alura",
+        "scrum": "Agile SCRUM — Practical Guide — Udemy",
+        "efCore": "Entity Framework Core — Complete — Udemy",
+        "cleanCode": "Clean Code in Practice — Udemy",
+        "csharpAdvanced": "Advanced C# Features — Infnet"
+      }
+    },
+    "items": {
+      "aluraAngular": "Angular: Build your first CRUD — Alura",
+      "scrumUdemy": "Agile SCRUM — Practical Guide — Udemy",
+      "efUdemy": "Entity Framework Core — Complete — Udemy",
+      "cleanCodeUdemy": "Clean Code in Practice — Udemy",
+      "csharpInfnet": "Advanced C# Features — Infnet",
+      "aspDigidata": "ASP.NET C# — Digidata (Rio de Janeiro)"
+    }
+  },
+  "skills": {
+    "eyebrow": "Stack / Skills",
+    "title": "Strong backend, modern frontend, continuous delivery",
+    "lead": "A snapshot of what I ship in enterprise production — from legacy to modern.",
+    "backendTitle": "Backend",
+    "backendText": "C# (10–12), .NET Core/.NET 6/7/8/9, ASP.NET Web API (middlewares, filters, versioning, JWT), Clean Architecture, SOLID, practical DDD, Repository + Unit of Work.",
+    "frontendTitle": "Frontend",
+    "frontendText": "Angular (standalone + signals), RxJS, services, guards, interceptors, forms (Reactive/Template-driven), advanced SCSS and complex screens (grids, modals, timers, accordions).",
+    "devopsTitle": "DevOps",
+    "devopsText": "Azure DevOps (YAML pipelines, build/release, env vars), Git + GitFlow, semantic versioning, quality gates and deploy automation.",
+    "dbTitle": "Databases",
+    "dbText": "SQL Server + Oracle (procedures, views, triggers, query/index tuning)."
+  },
+  "contact": {
+    "eyebrow": "Contact",
+    "title": "Let’s talk.",
+    "lead": "For opportunities and projects, I prefer direct contact. I reply fast — focused on outcomes and delivery.",
+    "closing": "To move faster, WhatsApp is the quickest channel. If you prefer, LinkedIn or email work great too.",
+    "primary": {
+      "eyebrow": "Fastest channel",
+      "title": "WhatsApp is the fastest way to reach me",
+      "lead": "For recruiters and projects: it’s the most direct way to reach me.",
+      "ctaWhatsapp": "Message me on WhatsApp",
+      "ctaLinkedin": "Open LinkedIn"
+    },
+    "actions": {
+      "copy": "Copy",
+      "copyLink": "Copy link",
+      "open": "Open"
+    },
+    "toast": {
+      "copied": "Copied"
+    },
+    "cards": {
+      "whatsapp": { "label": "WhatsApp" },
+      "email": { "label": "Email" },
+      "linkedin": { "label": "LinkedIn", "value": "Official profile" },
+      "location": { "label": "Location" }
+    },
+    "quick": {
+      "whatsapp": "WhatsApp",
+      "email": "Email",
+      "linkedin": "LinkedIn",
+      "cv": "Download CV"
+    },
+    "linksTitle": "Quick links",
+    "linksText": "Choose the most direct channel.",
+    "availability": {
+      "title": "Availability",
+      "statusLabel": "Status",
+      "statusValue": "Open to opportunities",
+      "responseLabel": "Response",
+      "responseValue": "within 24h",
+      "preferenceLabel": "Preference",
+      "preferenceValue": "Remote / Full-time / Freelance"
+    },
+    "qrTitle": "QR Code",
+    "qrText": "Open my LinkedIn and save the contact.",
+    "qrAlt": "LinkedIn QR code"
+  },
+  "projects": {
+    "eyebrow": "Featured projects",
+    "title": "Measurable impact, solid engineering",
+    "lead": "Cards in the format context → technical solution → result, to highlight decisions and real impact.",
+    "testimonials": {
+      "aria": "Engineering highlights",
+      "hint": "Click a card to bring it to the center.",
+      "prev": "Previous testimonial",
+      "next": "Next testimonial",
+      "items": {
+        "apiPredictability": {
+          "testimonial": "Technical clarity and predictable APIs: less friction for consumers and less day-to-day maintenance.",
+          "by": "Internal stakeholders • Platform"
+        },
+        "integrations": {
+          "testimonial": "Critical integrations with resilience and observability: reliability, traceability, and fewer incidents.",
+          "by": "Integrations • Enterprise"
+        },
+        "cicd": {
+          "testimonial": "CI/CD pipelines with quality gates: consistent deliveries without sacrificing speed.",
+          "by": "DevOps • Delivery"
+        },
+        "architecture": {
+          "testimonial": "Modular architecture and well-defined layers: continuous evolution without breaking the product.",
+          "by": "Architecture • Clean"
+        },
+        "dx": {
+          "testimonial": "Focus on DX and standards: faster onboarding and more consistent systems.",
+          "by": "Team • DX"
+        }
+      }
+    },
+    "labels": {
+      "context": "Context",
+      "solution": "Solution",
+      "result": "Result"
+    },
+    "items": {
+      "angularI18n": {
+        "title": "Angular 20 — i18n with ngx-translate",
+        "meta": "Multi-language (PT/EN/ES)",
+        "context": "I built an Angular 20 project with multi-language support to improve accessibility and user experience.",
+        "solution": "I implemented internationalization using @ngx-translate/core (TranslateService + JSON files) with language switching and translated content.",
+        "result": "App ready for PT, EN and ES, with copy centralized in i18n and a scalable structure to add new languages."
+      },
+      "apis": {
+        "title": "REST APIs with Result<T> + ProblemDetails",
+        "meta": ".NET 6/7/8/9 • Clean Architecture • Observability",
+        "context": "Standardize responses, reduce inconsistencies and improve DX/consumption.",
+        "solution": "Result<T> abstractions, handlers and ProblemDetails for errors.",
+        "result": "Fewer edge-case bugs, predictable APIs and faster maintenance."
+      },
+      "govbr": {
+        "title": "GovBR integrations",
+        "meta": "Integration • Security • Resilience",
+        "context": "Critical integrations with high volume and compliance requirements.",
+        "solution": "Isolated integration layers, retries, timeouts and traceability.",
+        "result": "Fewer failures and higher operational predictability."
+      },
+      "graph": {
+        "title": "Microsoft Graph (SharePoint uploads)",
+        "meta": "Microsoft Graph • SharePoint • Files and permissions",
+        "context": "Manage files, children and uploads with security and performance.",
+        "solution": "Upload and navigation flows with error handling and observability.",
+        "result": "Stable integration ready to scale in enterprise scenarios."
+      },
+      "cicd": {
+        "title": "Azure DevOps CI/CD + SonarQube",
+        "meta": "YAML • GitFlow • Continuous quality",
+        "context": "Frequent deployments with quality standards and traceability.",
+        "solution": "YAML pipelines, quality gates and branch policies.",
+        "result": "Fewer regressions and more reliable deliveries."
+      },
+      "observability": {
+        "title": "Observability (Sentry, Elmah.io)",
+        "meta": "Tracing • Errors • Alerts",
+        "context": "Fast production diagnosis and reduced MTTR.",
+        "solution": "Events, context, dashboards and actionable alerts.",
+        "result": "Visibility, faster fixes and fewer recurring incidents."
+      }
+    }
+  },
+  "experience": {
+    "eyebrow": "Experience",
+    "title": "Timeline (enterprise-ready)",
+    "lead": "Focused on impact, real context, support and continuous system evolution.",
+    "items": {
+      "ccaa": {
+        "when": "2024 — Present",
+        "title": "CCAA — Senior Full Stack",
+        "text": "Built APIs and shared libraries with .NET and Angular, focusing on modularity and reuse. Improved integration/deploy processes with CI/CD and Git."
+      },
+      "g4f": {
+        "when": "2023 — 2024",
+        "title": "G4F — Senior Development Analyst",
+        "text": "Created APIs and libraries in .NET Core; web development with Angular and ASP.NET; worked in squads using Scrum/Azure."
+      },
+      "mercanet": {
+        "when": "2022 — 2023",
+        "title": "Mercanet — legacy & modernization",
+        "text": "Maintained and evolved legacy systems (WebForms, NHibernate, Knockout) and incrementally migrated features to modern technologies."
+      },
+      "brq": {
+        "when": "2020 — 2022",
+        "title": "BRQ / Líder Insurance",
+        "text": "Supported and evolved ASP.NET/WebForms systems for the legal area, improving performance and doing gradual refactoring."
+      },
+      "quality": {
+        "when": "2019",
+        "title": "Quality S.A. (Wilson Sons) — Mid-level Development Analyst",
+        "text": "HR solutions focused on PLR, using web stack and Oracle."
+      },
+      "tivit": {
+        "when": "2017 — 2019",
+        "title": "TIVIT — Mid-level Development Analyst",
+        "text": "Vehicle tracking solutions, working with mission-critical legacy systems (ASP.NET + Oracle + Android Java)."
+      },
+      "ctis": {
+        "when": "2016 — 2017",
+        "title": "CTIS Tecnologia — Mid-level Development Analyst",
+        "text": "Education systems (Rio public schools) using C#/.NET and SQL Server."
+      },
+      "confitec": {
+        "when": "2010 — 2015",
+        "title": "Confitec — Intern → Mid-level Analyst",
+        "text": "Full development lifecycle in enterprise systems (real estate sector). Strong legacy work, critical production fixes and SQL Server optimizations."
+      }
+    }
+  },
+  "language": {
+    "pt": "PT",
+    "en": "EN"
+  },
+  "cvGate": {
+    "badge": "Download CV",
+    "title": {
+      "idle": "Download CV",
+      "error": "Invalid code",
+      "success": "Unlocked!"
+    },
+    "subtitle": {
+      "idle": "Enter the valid code to unlock the download.",
+      "error": "Check the code and try again.",
+      "success": "Your download will start now."
+    },
+    "input": {
+      "placeholder": "Request the code"
+    },
+    "hint": "Tip: check uppercase/lowercase letters and hyphens.",
+    "actions": {
+      "close": "Close",
+      "cancel": "Cancel",
+      "checking": "Checking…",
+      "submit": "Validate & download"
+    },
+    "validation": {
+      "invalidCode": "invalid code"
+    },
+    "footnote": {
+      "press": "Press",
+      "toValidate": "to validate",
+      "toClose": "to close"
+    },
+    "keys": {
+      "enter": "Enter",
+      "esc": "Esc"
+    }
+  }
+}

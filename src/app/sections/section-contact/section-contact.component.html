@@ -1,0 +1,201 @@
+<section class="section" id="contato" data-section>
+  <div class="section__inner">
+    <header class="section__header" data-reveal>
+      <p class="section__eyebrow">{{ 'contact.eyebrow' | translate }}</p>
+      <app-fx-title
+        class="section__title section__title--shine"
+        [text]="'contact.title' | translate"
+        size="section"
+      ></app-fx-title>
+      <p class="section__lead">{{ 'contact.lead' | translate }}</p>
+    </header>
+
+    <div class="contact" data-reveal>
+      <div class="contact__main">
+        <div class="card contact-cta">
+          <div class="contact-cta__text">
+            <p class="contact-cta__eyebrow">{{ 'contact.primary.eyebrow' | translate }}</p>
+            <p class="contact-cta__title">{{ 'contact.primary.title' | translate }}</p>
+            <p class="contact-cta__lead">{{ 'contact.primary.lead' | translate }}</p>
+          </div>
+
+          <div class="contact-cta__actions">
+            <app-glass-button
+              (buttonClick)="openExternal(whatsappUrl)"
+              contentClass="contact-cta__btn"
+              [attr.aria-label]="'contact.primary.ctaWhatsapp' | translate"
+            >
+              <img class="contact-cta__btnIcon" src="/img/icone-whatsapp.svg" alt="" aria-hidden="true" />
+              {{ 'contact.primary.ctaWhatsapp' | translate }}
+            </app-glass-button>
+          </div>
+        </div>
+
+        <div class="contact__grid">
+          <article class="card contact-card contact-card--primary">
+            <div class="contact-card__top">
+              <div class="contact-card__icon contact-card__icon--whatsapp" aria-hidden="true">
+                <img class="contact-card__iconImg" src="/img/icone-whatsapp.svg" alt="" aria-hidden="true" />
+              </div>
+              <div class="contact-card__meta">
+                <div class="contact-card__label">{{ 'contact.cards.whatsapp.label' | translate }}</div>
+                <div class="contact-card__value">{{ whatsappNumberMasked }}</div>
+              </div>
+            </div>
+          </article>
+
+          <article class="card contact-card">
+            <div class="contact-card__top">
+              <div class="contact-card__icon contact-card__icon--email" aria-hidden="true">
+                <img class="contact-card__iconImg" src="/img/icone-email.svg" alt="" aria-hidden="true" />
+              </div>
+              <div class="contact-card__meta">
+                <div class="contact-card__label">
+                  {{ 'contact.cards.email.label' | translate }}
+                  <span class="contact-card__hint" aria-hidden="true">⧉</span>
+                </div>
+                <button
+                  class="contact-card__value contact-card__value--mono contact-card__value--copy"
+                  type="button"
+                  (click)="copy(email)"
+                  [attr.aria-label]="'contact.actions.copy' | translate"
+                  [attr.title]="'contact.actions.copy' | translate"
+                >
+                  {{ email }}
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <article class="card contact-card contact-card--primary">
+            <div class="contact-card__top">
+              <div class="contact-card__icon contact-card__icon--linkedin" aria-hidden="true">
+                <img class="contact-card__iconImg" src="/img/icone-linkedin.svg" alt="" aria-hidden="true" />
+              </div>
+              <div class="contact-card__meta">
+                <div class="contact-card__label">{{ 'contact.cards.linkedin.label' | translate }}</div>
+                <a
+                  class="contact-card__link"
+                  [href]="linkedinUrl"
+                  target="_blank"
+                  rel="noopener"
+                  [attr.title]="linkedinUrl"
+                  [attr.aria-label]="linkedinUrl"
+                >
+                  {{ 'contact.cards.linkedin.value' | translate }}
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <article class="card contact-card">
+            <div class="contact-card__top">
+              <div class="contact-card__icon contact-card__icon--location" aria-hidden="true">
+                <img class="contact-card__iconImg" src="/img/icone-pointmap.svg" alt="" aria-hidden="true" />
+              </div>
+              <div class="contact-card__meta">
+                <div class="contact-card__label">{{ 'contact.cards.location.label' | translate }}</div>
+                <div class="contact-card__value">{{ locationLine1 }}</div>
+                <div class="contact-card__subvalue">{{ locationLine2 }}</div>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <p class="contact__closing">{{ 'contact.closing' | translate }}</p>
+
+        @if (toast()) {
+          <div class="toast" role="status" aria-live="polite">
+            {{ 'contact.toast.copied' | translate }}
+          </div>
+        }
+      </div>
+
+      <div class="contact__side">
+        <div class="card">
+          <h3 class="card__title">{{ 'contact.linksTitle' | translate }}</h3>
+          <p class="card__text">{{ 'contact.linksText' | translate }}</p>
+
+          <div class="contact__pills">
+            <a
+              class="pill pill--whatsapp"
+              [href]="whatsappUrl"
+              target="_blank"
+              rel="noopener"
+              [attr.aria-label]="'contact.quick.whatsapp' | translate"
+              [attr.title]="'contact.quick.whatsapp' | translate"
+              [attr.data-tooltip]="'contact.quick.whatsapp' | translate"
+            >
+              <img class="pill__icon" src="/img/icone-whatsapp.svg" alt="" aria-hidden="true" />
+            </a>
+            <a
+              class="pill pill--email"
+              [href]="mailtoUrl"
+              [attr.aria-label]="'contact.quick.email' | translate"
+              [attr.title]="'contact.quick.email' | translate"
+              [attr.data-tooltip]="'contact.quick.email' | translate"
+            >
+              <img class="pill__icon" src="/img/icone-email.svg" alt="" aria-hidden="true" />
+            </a>
+            <a
+              class="pill pill--linkedin"
+              [href]="linkedinUrl"
+              target="_blank"
+              rel="noopener"
+              [attr.aria-label]="'contact.quick.linkedin' | translate"
+              [attr.title]="'contact.quick.linkedin' | translate"
+              [attr.data-tooltip]="'contact.quick.linkedin' | translate"
+            >
+              <img class="pill__icon" src="/img/icone-linkedin.svg" alt="" aria-hidden="true" />
+            </a>
+            <a
+              class="pill pill--cv"
+              [href]="cvUrl"
+              (click)="openCvGate($event)"
+              [attr.aria-label]="'contact.quick.cv' | translate"
+              [attr.title]="'contact.quick.cv' | translate"
+              [attr.data-tooltip]="'contact.quick.cv' | translate"
+            >
+              <img class="pill__icon" src="/img/icone-cv.svg" alt="" aria-hidden="true" />
+            </a>
+          </div>
+
+          <app-cv-gate-modal
+            [open]="cvGateOpen()"
+            [fileUrl]="cvUrl"
+            [fileName]="cvFileName"
+            [validCode]="cvGateCode"
+            (closed)="onCvGateClosed()"
+            (downloaded)="onCvDownloaded()"
+          ></app-cv-gate-modal>
+        </div>
+
+        <div class="card">
+          <h3 class="card__title">{{ 'contact.availability.title' | translate }}</h3>
+          <div class="availability">
+            <div class="availability__row">
+              <span class="availability__label">{{ 'contact.availability.statusLabel' | translate }}</span>
+              <span class="availability__value">{{ 'contact.availability.statusValue' | translate }}</span>
+            </div>
+            <div class="availability__row">
+              <span class="availability__label">{{ 'contact.availability.responseLabel' | translate }}</span>
+              <span class="availability__value">{{ 'contact.availability.responseValue' | translate }}</span>
+            </div>
+            <div class="availability__row">
+              <span class="availability__label">{{ 'contact.availability.preferenceLabel' | translate }}</span>
+              <span class="availability__value">{{ 'contact.availability.preferenceValue' | translate }}</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3 class="card__title">{{ 'contact.qrTitle' | translate }}</h3>
+          <p class="card__text">{{ 'contact.qrText' | translate }}</p>
+          <div class="qr">
+            <img class="qr__img" [src]="linkedinQrUrl" [alt]="'contact.qrAlt' | translate" referrerpolicy="no-referrer" loading="lazy" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

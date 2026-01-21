@@ -1,0 +1,42 @@
+<svg
+  class="grid"
+  [ngClass]="classes"
+  appParallax
+  [parallaxSpeed]="0.04"
+  [parallaxMaxPx]="26"
+  parallaxOrigin="center"
+  aria-hidden="true"
+  preserveAspectRatio="xMidYMid slice"
+>
+  <defs>
+    <pattern
+      [attr.id]="patternId"
+      [attr.width]="cellWidth"
+      [attr.height]="cellHeight"
+      patternUnits="userSpaceOnUse"
+      [attr.x]="x"
+      [attr.y]="y"
+    >
+      <path
+        [attr.d]="'M.5 ' + cellHeight + 'V.5H' + cellWidth"
+        fill="none"
+        [attr.stroke-dasharray]="strokeDasharray"
+      />
+    </pattern>
+  </defs>
+
+  <rect width="100%" height="100%" [attr.fill]="'url(#' + patternId + ')'" />
+
+  <svg [attr.x]="x" [attr.y]="y" class="grid__overlay" overflow="visible">
+    <rect
+      *ngFor="let sq of squares; index as i; trackBy: trackById"
+      #sq
+      class="grid__sq"
+      [attr.width]="squareW()"
+      [attr.height]="squareH()"
+      [attr.x]="squareX(sq)"
+      [attr.y]="squareY(sq)"
+      stroke-width="0"
+    />
+  </svg>
+</svg>

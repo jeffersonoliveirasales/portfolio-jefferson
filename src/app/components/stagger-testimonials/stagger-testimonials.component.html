@@ -1,0 +1,60 @@
+<div class="stagger" role="region" aria-label="{{ 'projects.testimonials.aria' | translate }}">
+  <div class="stagger__stage">
+    <article
+      *ngFor="let item of cards; index as i; trackBy: trackById"
+      class="stagger-card"
+      [class.stagger-card--center]="getPosition(i) === 0"
+      [class.stagger-card--hidden]="!isVisible(getPosition(i))"
+      [ngStyle]="cardStyle(i)"
+      (click)="onCardClick(getPosition(i))"
+    >
+      <span class="stagger-card__slash" aria-hidden="true"></span>
+
+      <img class="stagger-card__avatar" [src]="item.imgSrc" [alt]="item.title | translate" />
+
+      <h3 class="stagger-card__title">{{ item.title | translate }}</h3>
+      <p class="stagger-card__meta">{{ item.meta | translate }}</p>
+
+      <div class="stagger-card__split">
+        <div>
+          <p class="stagger-card__label">{{ 'projects.labels.context' | translate }}</p>
+          <p class="stagger-card__text">{{ item.context | translate }}</p>
+        </div>
+        <div>
+          <p class="stagger-card__label">{{ 'projects.labels.solution' | translate }}</p>
+          <p class="stagger-card__text">{{ item.solution | translate }}</p>
+        </div>
+        <div>
+          <p class="stagger-card__label">{{ 'projects.labels.result' | translate }}</p>
+          <p class="stagger-card__text">{{ item.result | translate }}</p>
+        </div>
+      </div>
+    </article>
+
+    <div class="stagger__controls" aria-hidden="false">
+      <button
+        type="button"
+        class="stagger__control"
+        (click)="move(-1)"
+        aria-label="{{ 'projects.testimonials.prev' | translate }}"
+      >
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path fill="currentColor" d="M15.41 7.41 14 6l-6 6 6 6 1.41-1.41L10.83 12z" />
+        </svg>
+      </button>
+
+      <button
+        type="button"
+        class="stagger__control"
+        (click)="move(1)"
+        aria-label="{{ 'projects.testimonials.next' | translate }}"
+      >
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path fill="currentColor" d="M8.59 16.59 10 18l6-6-6-6-1.41 1.41L13.17 12z" />
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <p class="stagger__hint">{{ 'projects.testimonials.hint' | translate }}</p>
+</div>

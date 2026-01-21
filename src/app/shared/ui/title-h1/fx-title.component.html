@@ -1,0 +1,11 @@
+<span #host class="fx-title" [class.fx-title--hero]="size==='hero'">
+  <span class="fx-title__text" aria-label="{{ text }}">
+    @for (c of chars; track $index) {
+      <span #ch class="fx-title__ch" [attr.data-i]="$index">
+        {{ c === ' ' ? '\u00A0' : c }}
+      </span>
+    }
+  </span>
+
+  <canvas #canvas class="fx-title__fx" aria-hidden="true"></canvas>
+</span>

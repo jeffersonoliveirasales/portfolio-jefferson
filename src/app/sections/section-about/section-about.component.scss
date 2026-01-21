@@ -1,0 +1,84 @@
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+.about {
+  position: relative;
+  overflow: hidden;
+}
+
+.about__bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  isolation: isolate;
+  overflow: hidden;
+}
+
+.about__bg-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+
+  opacity: 0.18;
+  filter: saturate(1.15) contrast(1.08) blur(0.6px);
+  mix-blend-mode: screen;
+  transform: scale(1.06);
+  transform-origin: center;
+}
+
+.about__bg-vignette {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    radial-gradient(900px 420px at 25% 25%, rgba(0, 178, 255, 0.14), transparent 60%),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.72) 0%, rgba(0, 0, 0, 0.22) 48%, rgba(0, 0, 0, 0.62) 100%),
+    linear-gradient(180deg, rgba(0, 0, 0, 0.08), rgba(0, 0, 0, 0.55));
+  opacity: 1;
+}
+
+.about__bg-grid {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  opacity: 0.14;
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+  background-size: 44px 44px;
+  mask-image: radial-gradient(closest-side at 35% 30%, black 58%, transparent 100%);
+}
+
+.about__bg-glow {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+  background: radial-gradient(700px 320px at 75% 35%, rgba(0, 178, 255, 0.12), transparent 60%);
+  opacity: 0.85;
+}
+
+.about__content {
+  position: relative;
+  z-index: 5;
+}
+
+@media (max-width: 980px) {
+  .grid-3 {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .about__bg-video {
+    display: none;
+  }
+}

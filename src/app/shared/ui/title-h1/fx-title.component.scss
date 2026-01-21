@@ -1,0 +1,64 @@
+:host {
+  display: inline-block;
+  width: 100%;
+  outline: none;
+}
+
+.fx-title {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  line-height: 1.05;
+
+  --mx: 50%;
+  --my: 50%;
+}
+
+.fx-title__text {
+  position: relative;
+  z-index: 1;
+  display: inline-block;
+  width: 100%;
+}
+
+.fx-title__ch {
+  display: inline-block;
+  position: relative;
+
+  color: inherit;
+  -webkit-text-stroke: 0px transparent;
+
+  transition:
+    transform 160ms ease,
+    filter 160ms ease,
+    opacity 160ms ease,
+    -webkit-text-stroke 160ms ease,
+    color 160ms ease;
+  will-change: transform, filter;
+}
+
+.fx-title__ch.is-active {
+  color: transparent;
+  -webkit-text-stroke: 1.5px rgba(255, 255, 255, 0.95);
+
+  filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.18));
+  transform: translateY(-1px);
+}
+
+.fx-title__fx {
+  position: absolute;
+  inset: -18% -4% -18% -4%;
+  width: 108%;
+  height: 136%;
+  pointer-events: none;
+  z-index: 2;
+
+  mix-blend-mode: lighten;
+  opacity: 0.25;
+  transition: opacity 180ms ease;
+}
+
+:host:hover .fx-title__fx,
+:host:focus-visible .fx-title__fx {
+  opacity: 0.55;
+}

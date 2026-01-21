@@ -1,0 +1,101 @@
+<section class="section" id="skills" data-section>
+  <div class="section__inner">
+    <header class="section__header" data-reveal>
+      <p class="section__eyebrow">{{ 'skills.eyebrow' | translate }}</p>
+      <app-fx-title
+        class="section__title section__title--shine"
+        [text]="'skills.title' | translate"
+        size="section"
+      ></app-fx-title>
+      <p class="section__lead">{{ 'skills.lead' | translate }}</p>
+    </header>
+
+    <div class="skills" data-reveal>
+      <div class="skills__cards">
+        <article class="card">
+          <h3 class="card__title">{{ 'skills.backendTitle' | translate }}</h3>
+          <p class="card__text">{{ 'skills.backendText' | translate }}</p>
+          <div class="chips">
+            <span class="chip">ASP.NET Web API</span>
+            <span class="chip">.NET CORE</span>
+            <span class="chip">C#</span>
+            <span class="chip">EF Core</span>
+            <span class="chip">Dapper</span>
+            <span class="chip">Clean Architecture</span>
+            <span class="chip">DDD</span>
+            <span class="chip">SOLID</span>
+            <span class="chip">JWT</span>
+            <span class="chip">Swagger</span>
+            <span class="chip">xUnit/Shouldly</span>
+            <span class="chip">Integration Tests</span>
+          </div>
+        </article>
+
+        <article class="card">
+          <h3 class="card__title">{{ 'skills.frontendTitle' | translate }}</h3>
+          <p class="card__text">{{ 'skills.frontendText' | translate }}</p>
+          <div class="chips">
+            <span class="chip">Angular</span>
+            <span class="chip">Standalone</span>
+            <span class="chip">Signals</span>
+            <span class="chip">RxJS</span>
+            <span class="chip">Guards/Interceptors</span>
+            <span class="chip">Reactive Forms</span>
+            <span class="chip">HttpClient</span>
+            <span class="chip">SCSS</span>
+            <span class="chip">i18n (ngx-translate)</span>
+          </div>
+        </article>
+
+        <article class="card">
+          <h3 class="card__title">{{ 'skills.devopsTitle' | translate }}</h3>
+          <p class="card__text">{{ 'skills.devopsText' | translate }}</p>
+          <div class="chips">
+            <span class="chip">Azure DevOps</span>
+            <span class="chip">CI/CD</span>
+            <span class="chip">YAML</span>
+            <span class="chip">SonarQube</span>
+            <span class="chip">GitFlow</span>
+            <span class="chip">Postman</span>
+            <span class="chip">Sentry</span>
+            <span class="chip">Elmah.io</span>
+          </div>
+        </article>
+
+        <article class="card">
+          <h3 class="card__title">{{ 'skills.dbTitle' | translate }}</h3>
+          <p class="card__text">{{ 'skills.dbText' | translate }}</p>
+          <div class="chips">
+            <span class="chip">SQL Server</span>
+            <span class="chip">Oracle</span>
+            <span class="chip">PostgreSQL</span>
+            <span class="chip">Procedures/Índices</span>
+            <span class="chip">Query Tuning</span>
+            <span class="chip">Views/Triggers</span>
+          </div>
+        </article>
+      </div>
+
+      <div class="skills__cloud" aria-label="Icon cloud">
+        <div class="iconcloud-shell">
+          <app-icon-cloud
+            [iconSlugs]="[
+              'dotnet',
+              'angular',
+              'typescript',
+              'javascript',
+              'microsoftazure',
+              'docker',
+              'git',
+              'jira',
+              'github',
+              'sonarqube',
+              'visualstudiocode',
+              'microsoftsqlserver'
+            ]"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

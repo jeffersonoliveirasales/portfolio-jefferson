@@ -1,0 +1,99 @@
+
+@if (open) {
+  <div class="cv-backdrop" (click)="close()" aria-hidden="true"></div>
+
+  <section
+    class="cv-modal"
+    #dialog
+    role="dialog"
+    aria-modal="true"
+    [attr.aria-label]="(titleKey() | translate)"
+    [class.is-shake]="shake()"
+    (click)="$event.stopPropagation()"
+  >
+    <header class="cv-modal__header">
+      <div class="cv-modal__badge" aria-hidden="true">
+        <span class="dot"></span>
+        {{ 'cvGate.badge' | translate }}
+      </div>
+
+      <button
+        class="cv-modal__close"
+        type="button"
+        (click)="close()"
+        [attr.aria-label]="'cvGate.actions.close' | translate"
+      >
+        ✕
+      </button>
+    </header>
+
+    <div class="cv-modal__body">
+      <p class="cv-modal__subtitle">{{ subtitleKey() | translate }}</p>
+
+      <div class="cv-input">
+        <div
+          class="cv-input__wrap"
+          [class.is-error]="state() === 'error'"
+          [class.is-success]="state() === 'success'"
+        >
+          <input
+            #codeInput
+            id="cv-code"
+            type="text"
+            inputmode="text"
+            autocomplete="off"
+            autocorrect="off"
+            autocapitalize="off"
+            spellcheck="false"
+            [placeholder]="'cvGate.input.placeholder' | translate"
+            [ngModel]="code()"
+            (ngModelChange)="onCodeChange($event)"
+            [disabled]="state() === 'checking' || state() === 'success'"
+          />
+
+          <div class="cv-input__icon" aria-hidden="true">
+            @if (state() === 'checking') {
+              <span class="spinner"></span>
+            }
+            @else if (state() === 'success') {
+              <span class="ok">✓</span>
+            }
+            @else {
+              <span class="lock">⌁</span>
+            }
+          </div>
+        </div>
+
+        @if (showHint()) {
+          <div class="cv-input__hint">{{ 'cvGate.hint' | translate }}</div>
+        }
+
+        @if (state() === 'error') {
+          <div class="cv-input__error">{{ 'cvGate.validation.invalidCode' | translate }}</div>
+        }
+      </div>
+
+      <div class="cv-actions">
+        <button class="btn btn--ghost" type="button" (click)="close()" [disabled]="state() === 'checking'">
+          {{ 'cvGate.actions.cancel' | translate }}
+        </button>
+
+        <button class="btn btn--primary" type="button" (click)="validateAndDownload()" [disabled]="!canSubmit()">
+          @if (state() === 'checking') {
+            {{ 'cvGate.actions.checking' | translate }}
+          }
+          @else {
+            {{ 'cvGate.actions.submit' | translate }}
+          }
+        </button>
+      </div>
+
+      <div class="cv-footnote">
+        <span class="pulse" aria-hidden="true"></span>
+        {{ 'cvGate.footnote.press' | translate }} <b>{{ 'cvGate.keys.enter' | translate }}</b>
+        {{ 'cvGate.footnote.toValidate' | translate }} • <b>{{ 'cvGate.keys.esc' | translate }}</b>
+        {{ 'cvGate.footnote.toClose' | translate }}
+      </div>
+    </div>
+  </section>
+}

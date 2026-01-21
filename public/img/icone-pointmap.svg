@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Location pin icon">
+  <defs>
+    <!-- Vermelho (glossy) -->
+    <linearGradient id="pinRed" x1="180" y1="120" x2="340" y2="420" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#FF6B6B"/>
+      <stop offset="0.45" stop-color="#FF2F2F"/>
+      <stop offset="1" stop-color="#C70F0F"/>
+    </linearGradient>
+
+    <!-- brilho -->
+    <linearGradient id="pinShine" x1="195" y1="150" x2="320" y2="300" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#FFFFFF" stop-opacity="0.28"/>
+      <stop offset="0.55" stop-color="#FFFFFF" stop-opacity="0.12"/>
+      <stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/>
+    </linearGradient>
+
+    <!-- glow + sombra -->
+    <filter id="pinGlow" x="-30%" y="-30%" width="160%" height="170%">
+      <feDropShadow dx="0" dy="0" stdDeviation="16" flood-color="#FF2F2F" flood-opacity="0.40"/>
+      <feDropShadow dx="0" dy="18" stdDeviation="16" flood-color="#000" flood-opacity="0.35"/>
+    </filter>
+
+    <filter id="pinInnerShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="6" stdDeviation="6" flood-color="#000" flood-opacity="0.18"/>
+    </filter>
+  </defs>
+
+  <!-- base shadow ring -->
+  <g filter="url(#pinGlow)">
+    <ellipse cx="256" cy="406" rx="95" ry="26" fill="#FF2F2F" fill-opacity="0.35"/>
+    <ellipse cx="256" cy="406" rx="70" ry="16" fill="#000" fill-opacity="0.18"/>
+
+    <!-- pin body -->
+    <path d="M256 92
+             c-70.7 0-128 57.3-128 128
+             c0 91.8 101.7 187.1 117.2 201.1
+             c6.3 5.6 15.9 5.6 22.2 0
+             C282.3 407.1 384 311.8 384 220
+             c0-70.7-57.3-128-128-128Z"
+          fill="url(#pinRed)"/>
+
+    <!-- outer highlight stroke -->
+    <path d="M256 92
+             c-70.7 0-128 57.3-128 128
+             c0 91.8 101.7 187.1 117.2 201.1
+             c6.3 5.6 15.9 5.6 22.2 0
+             C282.3 407.1 384 311.8 384 220
+             c0-70.7-57.3-128-128-128Z"
+          fill="none" stroke="#FFFFFF" stroke-opacity="0.85" stroke-width="10"
+          stroke-linejoin="round"/>
+
+    <!-- inner border -->
+    <path d="M256 110
+             c-60.8 0-110 49.2-110 110
+             c0 77.7 89.5 162.8 109.3 180.5
+             c0.5 0.4 1.0 0.4 1.5 0
+             c19.8-17.7 109.2-102.8 109.2-180.5
+             c0-60.8-49.2-110-110-110Z"
+          fill="none" stroke="#7A0A0A" stroke-opacity="0.22" stroke-width="10"
+          stroke-linejoin="round"/>
+
+    <!-- top shine -->
+    <path d="M170 170
+             Q220 120 300 132
+             Q330 138 346 156
+             Q312 238 240 260
+             Q202 272 180 306
+             Q168 246 168 220
+             Q168 192 170 170Z"
+          fill="url(#pinShine)"/>
+
+    <!-- center circle -->
+    <g filter="url(#pinInnerShadow)">
+      <circle cx="256" cy="220" r="58" fill="#FFFFFF"/>
+      <circle cx="256" cy="220" r="58" fill="none" stroke="#000" stroke-opacity="0.10" stroke-width="10"/>
+      <circle cx="256" cy="220" r="42" fill="#FFFFFF" fill-opacity="0.55"/>
+    </g>
+  </g>
+</svg>

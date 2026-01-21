@@ -1,0 +1,63 @@
+<section class="section" id="experiencia" data-section>
+  <div class="section__inner">
+    <header class="section__header" data-reveal>
+      <p class="section__eyebrow">{{ 'experience.eyebrow' | translate }}</p>
+      <app-fx-title
+        class="section__title section__title--shine"
+        [text]="'experience.title' | translate"
+        size="section"
+      ></app-fx-title>
+      <p class="section__lead">{{ 'experience.lead' | translate }}</p>
+    </header>
+
+    <div class="exp-accordion" data-reveal role="list">
+      @for (item of items; track item.key) {
+        <article class="exp-accordion__item" role="listitem" [class.is-open]="isOpen(item.key)">
+          <button
+            type="button"
+            class="exp-accordion__trigger"
+            (click)="toggle(item.key)"
+            (keydown)="onKeyToggle($event, item.key)"
+            [attr.aria-expanded]="isOpen(item.key)"
+            [attr.aria-controls]="'exp-panel-' + item.key"
+          >
+            <div class="exp-accordion__triggerLeft">
+              <span class="exp-accordion__dot" aria-hidden="true"></span>
+              <span class="exp-accordion__title">
+                {{ item.titleKey | translate }}
+              </span>
+            </div>
+
+            <div class="exp-accordion__triggerRight" aria-hidden="true">
+              <span class="exp-accordion__when">
+                {{ item.whenKey | translate }}
+              </span>
+              <svg class="exp-accordion__chevron" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </div>
+          </button>
+
+          <div
+            class="exp-accordion__content"
+            [id]="'exp-panel-' + item.key"
+            role="region"
+            [attr.aria-label]="(item.titleKey | translate)"
+          >
+            <div class="exp-accordion__card card">
+              <p class="card__text">
+                {{ item.textKey | translate }}
+              </p>
+
+              <div class="chips">
+                @for (chip of item.chips; track chip) {
+                  <span class="chip">{{ chip }}</span>
+                }
+              </div>
+            </div>
+          </div>
+        </article>
+      }
+    </div>
+  </div>
+</section>

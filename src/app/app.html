@@ -1,0 +1,29 @@
+<main class="main">
+  <app-animated-grid-bg [numSquares]="28" [maxOpacity]="0.22" [duration]="3" [repeatDelay]="0.8" />
+
+  <div class="main__content">
+    <app-language-toggle />
+
+    <app-back-to-top />
+
+    <app-scroll-dots
+      [sections]="sections"
+      [activeId]="activeSectionId()"
+      (navigate)="scrollTo($event)"
+    />
+
+    <div class="scroll" data-scroll-container>
+      <app-section-hero />
+      <app-section-objective />
+      <app-section-about />
+      <app-section-legacy />
+      <app-section-projects />
+      <app-section-experience />
+      <app-section-education />
+      <app-section-courses />
+      <app-section-skills />
+      <app-section-contact />
+    </div>
+  </div>
+</main>
+

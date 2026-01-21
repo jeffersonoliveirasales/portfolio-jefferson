@@ -1,0 +1,11 @@
+app-stagger-testimonials {
+  display: block;
+  margin-top: 26px;
+  height: calc(100vh - 280px);
+}
+
+@media (max-width: 980px) {
+  app-stagger-testimonials {
+    height: calc(100vh - 260px);
+  }
+}

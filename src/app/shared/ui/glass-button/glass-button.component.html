@@ -1,0 +1,22 @@
+<div
+  class="glass-button-wrap"
+  [ngClass]="[wrapperClass, fullWidth ? 'glass-button-wrap--full' : '']"
+>
+  <button
+    #btn
+    class="glass-button"
+    [ngClass]="[sizeButtonClass[size], disabled ? 'is-disabled' : '', buttonClass]"
+    [attr.type]="type"
+    [disabled]="disabled"
+    [attr.aria-disabled]="disabled"
+    (click)="onButtonClick($event)"
+    (mousemove)="onMove($event)"
+    (mouseenter)="onEnter()"
+    (mouseleave)="onLeave()"
+  >
+    <span class="glass-button-text" [ngClass]="[sizeTextClass[size], contentClass]">
+      <ng-content></ng-content>
+    </span>
+  </button>
+  <div class="glass-button-shadow" aria-hidden="true"></div>
+</div>

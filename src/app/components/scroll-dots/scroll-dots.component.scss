@@ -1,0 +1,114 @@
+.dots {
+  position: fixed;
+  right: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 60;
+}
+
+.dots__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 12px;
+}
+
+.dot {
+  position: relative;
+  width: 16px;
+  height: 16px;
+  border: 0;
+  padding: 0;
+  background: transparent;
+  cursor: pointer;
+
+  display: grid;
+  place-items: center;
+
+  &:focus-visible {
+    outline: none;
+    .dot__core {
+      box-shadow: 0 0 0 3px rgba(255,255,255,.18);
+    }
+  }
+}
+
+.dot__core {
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,.25);
+  background: rgba(255,255,255,.06);
+  transition: transform .18s ease, background .18s ease, border-color .18s ease;
+}
+
+.dot.is-active .dot__core {
+  background: rgba(48, 175, 255, .9); /* seu azul */
+  border-color: rgba(48, 175, 255, .9);
+  transform: scale(1.05);
+}
+
+/* ===== Tooltip text-only ===== */
+.dot__label {
+  position: absolute;
+  right: 22px; /* distancia do dot */
+  top: 50%;
+  transform: translateY(-50%) translateX(6px);
+  pointer-events: none;
+
+  /* sem fundo */
+  background: transparent;
+
+  opacity: 0;
+  filter: blur(6px);
+  transition:
+    opacity .22s ease,
+    transform .22s ease,
+    filter .22s ease;
+
+  /* pra não quebrar linha */
+  white-space: nowrap;
+}
+
+.dot__label.is-show {
+  opacity: 1;
+  filter: blur(0px);
+  transform: translateY(-50%) translateX(0px);
+}
+
+/* texto moderno */
+.dot__labelText {
+  display: inline-block;
+
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Inter, Arial;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  font-size: 13px;
+
+  color: rgba(255,255,255,.92);
+  text-shadow:
+    0 2px 14px rgba(0,0,0,.55),
+    0 0 18px rgba(48,175,255,.18);
+
+  /* o “aparecer se completando aos poucos” */
+  clip-path: inset(0 100% 0 0); /* escondido */
+  transition: clip-path .38s cubic-bezier(.2,.9,.2,1);
+}
+
+.dot__label.is-show .dot__labelText {
+  clip-path: inset(0 0 0 0); /* revela */
+}
+
+/* micro-interação: no hover o dot dá um "respirar" */
+.dot:hover .dot__core {
+  transform: scale(1.08);
+  border-color: rgba(255,255,255,.4);
+}
+
+/* reduz motion */
+@media (prefers-reduced-motion: reduce) {
+  .dot__label, .dot__labelText, .dot__core {
+    transition: none !important;
+  }
+}

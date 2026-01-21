@@ -1,0 +1,69 @@
+<section class="section hero" id="home" data-section>
+  <div class="hero__bg" aria-hidden="true">
+    <video
+      #bgVideo
+      class="hero__bg-video"
+      appParallax
+      [parallaxSpeed]="0.10"
+      [parallaxMaxPx]="42"
+      parallaxOrigin="top"
+      src="/video/video-respirando.mp4"
+      autoplay
+      muted
+      loop
+      playsinline
+      defaultmuted
+      preload="metadata"
+    ></video>
+
+    <div class="hero__bg-vignette" #heroVignette></div>
+    <div
+      class="hero__bg-grid"
+      appParallax
+      [parallaxSpeed]="0.06"
+      [parallaxMaxPx]="22"
+      parallaxOrigin="center"
+    ></div>
+    <div
+      class="hero__bg-glow"
+      appParallax
+      [parallaxSpeed]="0.14"
+      [parallaxMaxPx]="56"
+      parallaxOrigin="top"
+    ></div>
+  </div>
+
+  <div class="section__inner hero__content">
+    <div class="hero__copy" data-reveal>
+      <p class="hero__kicker">{{ 'hero.name' | translate }}</p>
+
+      <app-fx-title
+        class="hero__title section__title section__title--shine"
+        [text]="'hero.title' | translate"
+        size="hero"
+      ></app-fx-title>
+
+      <p class="hero__subtitle">{{ 'hero.subtitle1' | translate }}</p>
+      <p class="hero__subtitle">{{ 'hero.subtitle2' | translate }}</p>
+
+      <div class="hero__cta">
+        <app-glass-button (buttonClick)="scrollTo('projetos')">
+          {{ 'hero.ctaProjects' | translate }}
+        </app-glass-button>
+        <app-glass-button (buttonClick)="scrollTo('skills')">Skills</app-glass-button>
+        <app-glass-button (buttonClick)="scrollTo('contato')">
+          {{ 'hero.ctaContact' | translate }}
+        </app-glass-button>
+      </div>
+
+      <div class="hero__badges">
+        <span class="chip">{{ 'hero.badgeDotnet' | translate }}</span>
+        <span class="chip">{{ 'hero.badgeAngular' | translate }}</span>
+        <span class="chip">{{ 'hero.badgeDb' | translate }}</span>
+        <span class="chip">{{ 'hero.badgeDevops' | translate }}</span>
+        <span class="chip">{{ 'hero.badgeSonar' | translate }}</span>
+        <span class="chip">{{ 'hero.badgeObs' | translate }}</span>
+      </div>
+    </div>
+  </div>
+</section>

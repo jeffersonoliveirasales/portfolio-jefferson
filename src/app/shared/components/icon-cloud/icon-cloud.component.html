@@ -1,0 +1,13 @@
+<div class="icon-cloud" role="img" aria-label="Icon cloud">
+  <canvas #canvas class="icon-cloud__canvas" [attr.id]="canvasId"></canvas>
+
+  <div class="icon-cloud__list" aria-hidden="true">
+    <ul [attr.id]="listId">
+      <li *ngFor="let item of items">
+        <a href="#" (click)="preventClick($event)" [attr.title]="item.title">
+          <img [src]="item.dataUri" [alt]="item.title" width="42" height="42" loading="lazy" />
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>

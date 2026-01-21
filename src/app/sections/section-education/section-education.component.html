@@ -1,0 +1,52 @@
+<section class="section" id="formacao" data-section>
+  <div class="section__inner">
+    <header class="section__header" data-reveal>
+      <p class="section__eyebrow">{{ 'education.eyebrow' | translate }}</p>
+      <app-fx-title
+        class="section__title section__title--shine"
+        [text]="'education.title' | translate"
+        size="section"
+      ></app-fx-title>
+      <p class="section__lead">{{ 'education.lead' | translate }}</p>
+    </header>
+
+    <div class="edu-sticky" data-reveal>
+      <div class="edu-sticky__left edu-sticky__scroll" (scroll)="onScroll($any($event.target))">
+        <div class="edu-sticky__list">
+          @for (item of items; track item.key; let i = $index) {
+            <article class="edu-sticky__block" data-edu-block [class.is-active]="i === activeIndex">
+              <button
+                type="button"
+                class="edu-sticky__blockBtn"
+                (click)="selectIndex($event, i)"
+                [attr.aria-pressed]="i === activeIndex"
+              >
+                <h3 class="edu-sticky__title">
+                  {{ item.titleKey | translate }}
+                </h3>
+
+                <p class="edu-sticky__text">
+                  {{ item.textKey | translate }}
+                </p>
+              </button>
+            </article>
+          }
+
+          <div class="edu-sticky__spacer" aria-hidden="true"></div>
+        </div>
+      </div>
+
+      <aside class="edu-sticky__right" aria-label="Destaque da formação">
+        <div class="edu-preview">
+          <img
+            class="edu-preview__img"
+            [src]="items[activeIndex].image.src"
+            [alt]="items[activeIndex].image.alt"
+            loading="lazy"
+            (error)="onImgError($event)"
+          />
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>

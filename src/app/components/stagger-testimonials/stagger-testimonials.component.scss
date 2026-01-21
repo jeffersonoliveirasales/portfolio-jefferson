@@ -1,0 +1,217 @@
+.stagger {
+  width: 100%;
+  height: 100%;
+  border-radius: 0;
+  border: 0;
+  background: transparent;
+  overflow: visible;
+}
+
+.stagger__stage {
+  position: relative;
+  width: 100%;
+  height: var(--stagger-height, 560px);
+  overflow: visible;
+  padding-inline: clamp(14px, 2vw, 32px);
+  background: radial-gradient(
+    900px 420px at 50% 55%,
+    rgba(255, 255, 255, 0.05) 0%,
+    rgba(0, 0, 0, 0) 60%,
+    rgba(0, 0, 0, 0) 100%
+  );
+  -webkit-mask-image: radial-gradient(circle at 50% 55%, #000 60%, transparent 100%);
+  mask-image: radial-gradient(circle at 50% 55%, #000 60%, transparent 100%);
+}
+
+.stagger__controls {
+  position: absolute;
+  left: 50%;
+  bottom: 16px;
+  transform: translateX(-50%);
+  z-index: 30;
+  display: flex;
+  gap: 14px;
+}
+
+.stagger__control {
+  height: 56px;
+  width: 56px;
+  display: grid;
+  place-items: center;
+  border-radius: 0;
+  border: 2px solid rgba(255, 255, 255, 0.18);
+  background: rgba(0, 0, 0, 0.2);
+  color: rgba(255, 255, 255, 0.92);
+  cursor: pointer;
+  transition:
+    transform 160ms ease,
+    background-color 160ms ease,
+    border-color 160ms ease;
+}
+
+.stagger__control svg {
+  width: 22px;
+  height: 22px;
+}
+
+.stagger__control:hover {
+  transform: translateY(-1px);
+  background: rgba(255, 255, 255, 0.04);
+  border-color: rgba(255, 255, 255, 0.26);
+}
+
+.stagger__control:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.14);
+}
+
+.stagger__hint {
+  margin: 0;
+  padding: 10px 14px 14px;
+  font-size: 0.84rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.stagger-card {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  padding: 24px;
+  border-radius: 18px;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  background: rgba(0, 0, 0, 0.38);
+  color: rgba(255, 255, 255, 0.86);
+  cursor: pointer;
+  will-change: transform, opacity, filter;
+  transition:
+    transform 500ms ease,
+    background-color 500ms ease,
+    border-color 500ms ease,
+    opacity 500ms ease,
+    filter 500ms ease;
+  clip-path: polygon(
+    50px 0%,
+    calc(100% - 50px) 0%,
+    100% 50px,
+    100% 100%,
+    calc(100% - 50px) 100%,
+    50px 100%,
+    0 100%,
+    0 0
+  );
+}
+
+.stagger-card--hidden {
+  opacity: 0 !important;
+  pointer-events: none;
+}
+
+.stagger-card:not(.stagger-card--center) {
+  opacity: 0.68;
+  filter: saturate(0.8) brightness(0.9);
+}
+
+.stagger-card--center {
+  z-index: 10;
+  background: rgba(245, 245, 245, 0.96);
+  color: rgba(18, 18, 18, 0.92);
+  border-color: rgba(255, 255, 255, 0.24);
+  opacity: 1;
+  filter: none;
+  box-shadow:
+    0 18px 60px rgba(0, 0, 0, 0.55),
+    0px 8px 0px 4px rgba(0, 0, 0, 0.25);
+
+  clip-path: polygon(
+    0 0,
+    calc(100% - 58px) 0,
+    100% 58px,
+    100% 100%,
+    0 100%
+  );
+}
+
+.stagger-card__slash {
+  position: absolute;
+  right: -2px;
+  top: 48px;
+  width: 70.7106781187px;
+  height: 2px;
+  transform-origin: top right;
+  transform: rotate(45deg);
+  background: rgba(255, 255, 255, 0.16);
+}
+
+.stagger-card__avatar {
+  display: block;
+  height: 56px;
+  width: 48px;
+  object-fit: cover;
+  object-position: top;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.06);
+  box-shadow: 3px 3px 0px rgba(0, 0, 0, 0.35);
+  margin-bottom: 14px;
+}
+
+.stagger-card__title {
+  margin: 0;
+  font-weight: 900;
+  font-size: 1.05rem;
+  line-height: 1.25;
+}
+
+.stagger-card__meta {
+  margin: 6px 0 0;
+  font-size: 0.84rem;
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.stagger-card__split {
+  margin-top: 14px;
+  display: grid;
+  gap: 12px;
+}
+
+.stagger-card__label {
+  margin: 0 0 6px;
+  font-weight: 800;
+  font-size: 0.78rem;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.stagger-card__text {
+  margin: 0;
+  font-weight: 500;
+  font-size: 0.9rem;
+  line-height: 1.35;
+  color: rgba(255, 255, 255, 0.86);
+}
+
+.stagger-card--center .stagger-card__meta {
+  color: rgba(18, 18, 18, 0.7);
+}
+
+.stagger-card--center .stagger-card__label {
+  color: rgba(18, 18, 18, 0.65);
+}
+
+.stagger-card--center .stagger-card__text {
+  color: rgba(18, 18, 18, 0.86);
+}
+
+@media (max-width: 640px) {
+  .stagger__stage {
+    height: var(--stagger-height, 460px);
+  }
+
+  .stagger-card {
+    padding: 20px;
+  }
+
+  .stagger-card__text {
+    font-size: 0.98rem;
+  }
+}
