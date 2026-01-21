@@ -45,6 +45,10 @@
     grid-template-columns: 1fr;
   }
 
+  .skills__cards .card {
+    overflow: visible;
+  }
+
   .skills__cards,
   .skills__cloud {
     order: 0;

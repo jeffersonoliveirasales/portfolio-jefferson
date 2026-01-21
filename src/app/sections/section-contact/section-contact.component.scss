@@ -6,6 +6,15 @@
   align-items: start;
 }
 
+@media (min-width: 981px) {
+  .section {
+    align-items: start;
+    overflow: auto;
+    padding-top: 56px;
+    padding-bottom: 56px;
+  }
+}
+
 .contact__main {
   display: grid;
   gap: 14px;
