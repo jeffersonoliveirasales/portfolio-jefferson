@@ -32,6 +32,7 @@
     "@ngx-translate/core": "^17.0.0",
     "@ngx-translate/http-loader": "^17.0.0",
     "@splinetool/viewer": "^1.12.37",
+    "gsap": "^3.14.2",
     "rxjs": "~7.8.0",
     "simple-icons": "^16.6.0",
     "tag-canvas": "^0.0.5",
