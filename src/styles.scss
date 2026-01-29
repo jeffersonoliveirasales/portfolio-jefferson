@@ -98,6 +98,39 @@ a {
 .section__title--shine {
   position: relative;
   letter-spacing: -0.03em;
+
+  --title-gradient: linear-gradient(
+    92deg,
+    var(--accent) 0%,
+    rgba(255, 255, 255, 0.92) 46%,
+    var(--accent-2) 100%
+  );
+
+  animation: titleFade 700ms ease both;
+}
+
+.section__title--shine .fx-title__ch {
+  background-image: var(--title-gradient);
+  background-size: 140% 140%;
+  background-position: 50% 50%;
+
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+}
+
+@keyframes titleFade {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+    filter: blur(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
 }
 
 .section__title--shine::before {
