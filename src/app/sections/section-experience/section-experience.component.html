@@ -10,6 +10,8 @@
       <p class="section__lead">{{ 'experience.lead' | translate }}</p>
     </header>
 
+    <div class="slot slot--experience" data-3d-slot="experience" aria-hidden="true"></div>
+
     <div class="exp-accordion" data-reveal role="list">
       @for (item of items; track item.key) {
         <article class="exp-accordion__item" role="listitem" [class.is-open]="isOpen(item.key)">

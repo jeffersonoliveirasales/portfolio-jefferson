@@ -1,4 +1,13 @@
-import { AfterViewInit, ChangeDetectionStrategy, Component, DestroyRef, ElementRef, ViewChild, inject } from '@angular/core';
+import {
+  AfterViewInit,
+  ChangeDetectionStrategy,
+  Component,
+  DestroyRef,
+  ElementRef,
+  NgZone,
+  ViewChild,
+  inject
+} from '@angular/core';
 
 import { TranslateModule } from '@ngx-translate/core';
 
@@ -22,8 +31,12 @@ gsap.registerPlugin(ScrollTrigger);
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SectionHeroComponent implements AfterViewInit {
-  private readonly host = inject(ElementRef<HTMLElement>);
   private readonly destroyRef = inject(DestroyRef);
+  private readonly zone = inject(NgZone);
+  private readonly host = inject(ElementRef<HTMLElement>);
+
+  private navRaf = 0;
+  private navRestoreTimer = 0;
 
   @ViewChild('bgVideo', { static: false }) private bgVideo?: ElementRef<HTMLVideoElement>;
   @ViewChild('heroVignette', { static: false }) private heroVignette?: ElementRef<HTMLElement>;
@@ -138,8 +151,70 @@ export class SectionHeroComponent implements AfterViewInit {
   }
 
   protected scrollTo(id: string): void {
-    const el = document.getElementById(id);
-    if (!el) return;
-    el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    const rawEl = document.getElementById(id);
+    if (!rawEl) return;
+
+    const targetEl = (rawEl.closest?.('[data-section]') as HTMLElement | null) ?? rawEl;
+
+    const container = document.querySelector<HTMLElement>('[data-scroll-container]');
+    const useBodyScroll = window.matchMedia('(max-width: 900px)').matches || !container;
+
+    if (useBodyScroll) {
+      targetEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      return;
+    }
+
+    const top = targetEl.offsetTop;
+
+    const prevSnapType = container.style.scrollSnapType;
+    const prevBehavior = container.style.scrollBehavior;
+    container.classList.add('is-nav-scrolling');
+    container.style.scrollSnapType = 'none';
+    container.style.scrollBehavior = 'auto';
+
+    if (this.navRestoreTimer) {
+      window.clearTimeout(this.navRestoreTimer);
+      this.navRestoreTimer = 0;
+    }
+
+    if (this.navRaf) {
+      window.cancelAnimationFrame(this.navRaf);
+      this.navRaf = 0;
+    }
+
+    const startTop = container.scrollTop;
+    const delta = top - startTop;
+    const durationMs = 700;
+    const startTs = performance.now();
+
+    const easeInOutCubic = (t: number) =>
+      t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+
+    const step = (now: number) => {
+      const t = Math.min(1, (now - startTs) / durationMs);
+      const eased = easeInOutCubic(t);
+      container.scrollTop = startTop + delta * eased;
+
+      if (t < 1) {
+        this.navRaf = window.requestAnimationFrame(step);
+        return;
+      }
+
+      this.navRaf = 0;
+      container.scrollTop = top;
+      container.classList.remove('is-nav-scrolling');
+      container.style.scrollSnapType = prevSnapType;
+      container.style.scrollBehavior = prevBehavior;
+    };
+
+    this.navRaf = window.requestAnimationFrame(step);
+
+    this.navRestoreTimer = window.setTimeout(() => {
+      if (this.navRaf) return;
+      container.classList.remove('is-nav-scrolling');
+      container.style.scrollSnapType = prevSnapType;
+      container.style.scrollBehavior = prevBehavior;
+      this.navRestoreTimer = 0;
+    }, 1600);
   }
 }

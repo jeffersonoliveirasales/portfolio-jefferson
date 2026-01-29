@@ -10,6 +10,11 @@
       <p class="section__lead">{{ 'education.lead' | translate }}</p>
     </header>
 
+    <div class="slot slot--education" data-3d-slot="education" aria-hidden="true"></div>
+
+    <span class="wp" data-3d-waypoint="education" data-x="30" data-y="32" data-s="1.05" data-z="1"></span>
+    <span class="wp" data-3d-waypoint="education" data-x="26" data-y="54" data-s="0.95" data-z="1"></span>
+
     <div class="edu-sticky" data-reveal>
       <div class="edu-sticky__left edu-sticky__scroll" (scroll)="onScroll($any($event.target))">
         <div class="edu-sticky__list">

@@ -19,6 +19,15 @@
   scrollbar-width: none;
 }
 
+.scroll.is-nav-scrolling {
+  scroll-snap-type: none !important;
+  scroll-behavior: auto !important;
+}
+
+.scroll.is-nav-scrolling [data-section] {
+  scroll-snap-align: none !important;
+}
+
 @supports (height: 100dvh) {
   .main {
     height: 100dvh;

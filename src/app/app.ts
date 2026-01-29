@@ -5,6 +5,7 @@ import { BackToTopComponent } from './components/back-to-top/back-to-top.compone
 import { LanguageToggleComponent } from './components/language-toggle/language-toggle.component';
 import { ScrollDotsComponent } from './components/scroll-dots/scroll-dots.component';
 import { AnimatedGridBgComponent } from './shared/components/animated-grid-bg/animated-grid-bg.component';
+import { Scroll3DComponent } from './shared/ui/scroll-3d/scroll-3d.component';
 import { SectionAboutComponent } from './sections/section-about/section-about.component';
 import { SectionContactComponent } from './sections/section-contact/section-contact.component';
 import { SectionCoursesComponent } from './sections/section-courses/section-courses.component';
@@ -23,6 +24,7 @@ import { SectionSkillsComponent } from './sections/section-skills/section-skills
     LanguageToggleComponent,
     BackToTopComponent,
     ScrollDotsComponent,
+    Scroll3DComponent,
     SectionHeroComponent,
     SectionObjectiveComponent,
     SectionAboutComponent,
@@ -40,6 +42,9 @@ import { SectionSkillsComponent } from './sections/section-skills/section-skills
 export class App implements AfterViewInit {
   private readonly destroyRef = inject(DestroyRef);
   private readonly translate = inject(TranslateService);
+
+  private navRaf = 0;
+  private navRestoreTimer = 0;
 
   protected readonly sections = [
     { id: 'home', labelKey: 'nav.home' },
@@ -165,10 +170,82 @@ export class App implements AfterViewInit {
 
   protected scrollTo(id: string): void {
     const validIds = this.sections.map((s) => s.id) as ReadonlyArray<string>;
-    if (!validIds.includes(id)) return;
+    if (!validIds.includes(id)) {
+      return;
+    }
 
-    const el = document.getElementById(id);
-    if (!el) return;
-    el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    const rawEl = document.getElementById(id);
+    if (!rawEl) {
+      return;
+    }
+
+    const targetEl = (rawEl.closest?.('[data-section]') as HTMLElement | null) ?? rawEl;
+
+    const container = document.querySelector<HTMLElement>('[data-scroll-container]');
+    const useBodyScroll = window.matchMedia('(max-width: 900px)').matches || !container;
+
+    if (useBodyScroll) {
+      targetEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      return;
+    }
+
+    const containerRect = container.getBoundingClientRect();
+    const elRect = targetEl.getBoundingClientRect();
+    const topByOffset = targetEl.offsetTop;
+    const topByRect = elRect.top - containerRect.top + container.scrollTop;
+    const top = Number.isFinite(topByOffset) && topByOffset >= 0 ? topByOffset : topByRect;
+
+    const maxScrollTop = Math.max(0, container.scrollHeight - container.clientHeight);
+
+    const prevSnapType = container.style.scrollSnapType;
+    const prevBehavior = container.style.scrollBehavior;
+    container.classList.add('is-nav-scrolling');
+    container.style.scrollSnapType = 'none';
+    container.style.scrollBehavior = 'auto';
+
+    if (this.navRestoreTimer) {
+      window.clearTimeout(this.navRestoreTimer);
+      this.navRestoreTimer = 0;
+    }
+
+    if (this.navRaf) {
+      window.cancelAnimationFrame(this.navRaf);
+      this.navRaf = 0;
+    }
+
+    const startTop = container.scrollTop;
+    const delta = top - startTop;
+    const durationMs = 700;
+    const startTs = performance.now();
+
+    const easeInOutCubic = (t: number) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
+
+    const step = (now: number) => {
+      const t = Math.min(1, (now - startTs) / durationMs);
+      const eased = easeInOutCubic(t);
+      container.scrollTop = startTop + delta * eased;
+
+      if (t < 1) {
+        this.navRaf = window.requestAnimationFrame(step);
+        return;
+      }
+
+      this.navRaf = 0;
+      container.scrollTop = top;
+
+      container.classList.remove('is-nav-scrolling');
+      container.style.scrollSnapType = prevSnapType;
+      container.style.scrollBehavior = prevBehavior;
+    };
+
+    this.navRaf = window.requestAnimationFrame(step);
+
+    this.navRestoreTimer = window.setTimeout(() => {
+      if (this.navRaf) return;
+      container.classList.remove('is-nav-scrolling');
+      container.style.scrollSnapType = prevSnapType;
+      container.style.scrollBehavior = prevBehavior;
+      this.navRestoreTimer = 0;
+    }, 1600);
   }
 }

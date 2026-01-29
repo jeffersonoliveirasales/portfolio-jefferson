@@ -13,6 +13,11 @@
     />
 
     <div class="scroll" data-scroll-container>
+      @defer (on viewport) {
+        <app-scroll-3d />
+      } @placeholder {
+        <div style="height: 1px;"></div>
+      }
       <app-section-hero />
       <app-section-objective />
       <app-section-about />
