@@ -6,24 +6,18 @@ import {
   ElementRef,
   inject
 } from '@angular/core';
+import { signal } from '@angular/core';
 
 import { TranslateModule } from '@ngx-translate/core';
 
 import { setupGsapReveal } from '../../shared/motion/gsap-reveal';
+import { ExperienceEvolutionSvgComponent } from '../../shared/ui/experience-evolution-svg/experience-evolution-svg.component';
 import { FxTitleComponent } from '../../shared/ui/title-h1/fx-title.component';
-
-type ExperienceItem = {
-  key: string;
-  whenKey: string;
-  titleKey: string;
-  textKey: string;
-  chips: string[];
-};
 
 @Component({
   selector: 'app-section-experience',
   standalone: true,
-  imports: [TranslateModule, FxTitleComponent],
+  imports: [TranslateModule, FxTitleComponent, ExperienceEvolutionSvgComponent],
   templateUrl: './section-experience.component.html',
   styleUrls: ['./section-experience.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
@@ -32,84 +26,50 @@ export class SectionExperienceComponent implements AfterViewInit {
   private readonly host = inject(ElementRef<HTMLElement>);
   private readonly destroyRef = inject(DestroyRef);
 
-  protected readonly items: ExperienceItem[] = [
-    {
-      key: 'ccaa',
-      whenKey: 'experience.items.ccaa.when',
-      titleKey: 'experience.items.ccaa.title',
-      textKey: 'experience.items.ccaa.text',
-      chips: ['.NET', 'Angular', 'Azure DevOps', 'GitFlow']
-    },
-    {
-      key: 'g4f',
-      whenKey: 'experience.items.g4f.when',
-      titleKey: 'experience.items.g4f.title',
-      textKey: 'experience.items.g4f.text',
-      chips: ['C#', 'Web API', 'Angular', 'SQL Server']
-    },
-    {
-      key: 'mercanet',
-      whenKey: 'experience.items.mercanet.when',
-      titleKey: 'experience.items.mercanet.title',
-      textKey: 'experience.items.mercanet.text',
-      chips: ['Legado', 'Modernização', 'Observabilidade', 'SQL Server/Oracle']
-    },
-    {
-      key: 'brq',
-      whenKey: 'experience.items.brq.when',
-      titleKey: 'experience.items.brq.title',
-      textKey: 'experience.items.brq.text',
-      chips: ['C#', 'SQL Server', 'WebForms', 'Web API']
-    },
-    {
-      key: 'quality',
-      whenKey: 'experience.items.quality.when',
-      titleKey: 'experience.items.quality.title',
-      textKey: 'experience.items.quality.text',
-      chips: ['C#', 'MVC', 'Oracle']
-    },
-    {
-      key: 'tivit',
-      whenKey: 'experience.items.tivit.when',
-      titleKey: 'experience.items.tivit.title',
-      textKey: 'experience.items.tivit.text',
-      chips: ['ASP.NET', 'Oracle', 'Java (Android)']
-    },
-    {
-      key: 'ctis',
-      whenKey: 'experience.items.ctis.when',
-      titleKey: 'experience.items.ctis.title',
-      textKey: 'experience.items.ctis.text',
-      chips: ['C#', '.NET', 'SQL Server']
-    },
-    {
-      key: 'confitec',
-      whenKey: 'experience.items.confitec.when',
-      titleKey: 'experience.items.confitec.title',
-      textKey: 'experience.items.confitec.text',
-      chips: ['WebForms', 'SQL Server', 'Stored Procedures', 'Tuning']
-    }
-  ];
+  protected readonly svgVisible = signal(false);
 
-  protected openKey: string | null = 'ccaa';
+  private wasInView = false;
 
-  protected toggle(key: string): void {
-    this.openKey = this.openKey === key ? null : key;
-  }
-
-  protected isOpen(key: string): boolean {
-    return this.openKey === key;
-  }
-
-  protected onKeyToggle(evt: KeyboardEvent, key: string): void {
-    if (evt.key === 'Enter' || evt.key === ' ') {
-      evt.preventDefault();
-      this.toggle(key);
-    }
+  private restartSvg(): void {
+    this.svgVisible.set(false);
+    queueMicrotask(() => this.svgVisible.set(true));
   }
 
   ngAfterViewInit(): void {
     const root = document.querySelector('[data-scroll-container]');
     setupGsapReveal(this.host.nativeElement, this.destroyRef, { root });
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const entry = entries[0];
+        if (!entry) return;
+
+        const inView = entry.isIntersecting;
+
+        if (inView && !this.wasInView) {
+          this.wasInView = true;
+          if (!this.svgVisible()) {
+            this.svgVisible.set(true);
+          } else {
+            this.restartSvg();
+          }
+          return;
+        }
+
+        if (!inView) {
+          this.wasInView = false;
+          if (this.svgVisible()) {
+            this.svgVisible.set(false);
+          }
+        }
+      },
+      {
+        root: root instanceof HTMLElement ? root : null,
+        threshold: 0.35
+      }
+    );
+
+    observer.observe(this.host.nativeElement);
+    this.destroyRef.onDestroy(() => observer.disconnect());
   }
 }

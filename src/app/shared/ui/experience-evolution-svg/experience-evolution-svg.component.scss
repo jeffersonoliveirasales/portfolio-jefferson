@@ -1,0 +1,43 @@
+.evolution-scroll {
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: visible;
+  padding: 26px 0;
+
+  cursor: grab;
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+
+  touch-action: pan-x;
+  user-select: none;
+
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.evolution-scroll::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  display: none;
+}
+
+.evolution-scroll.is-dragging {
+  cursor: grabbing;
+}
+
+.evolution-scroll svg {
+  display: block;
+  max-width: none;
+}
+
+.evolution-scroll .evolution-svg {
+  height: clamp(420px, 62vh, 680px);
+  width: auto;
+  aspect-ratio: 3400 / 850;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .evolution-scroll {
+    scroll-behavior: auto;
+  }
+}
