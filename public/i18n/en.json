@@ -274,6 +274,96 @@
     "eyebrow": "Professional Experience",
     "title": "Timeline (enterprise-ready)",
     "lead": "Hands-on impact, real context, maintenance and system evolution.",
+    "svgTimeline": {
+      "confitec": {
+        "year": "2010–2015",
+        "role": "Intern to Mid-level",
+        "company": "Confitec",
+        "desc": "Maintenance and database tuning for the real estate sector. Strong focus on monolithic architecture and complex legacy systems.",
+        "badges": {
+          "csharp": "C#",
+          "webforms": "WebForms",
+          "sqlserver": "SQL Server"
+        }
+      },
+      "ctis": {
+        "year": "2016–2017",
+        "role": "Mid-level Analyst",
+        "company": "CTIS Tecnologia",
+        "desc": "Systems for Rio’s municipal education area. Day-to-day coordination through agile routines and flow-based work.",
+        "badges": {
+          "csharp": "C#",
+          "aspnet": "ASP.NET",
+          "kanban": "Kanban"
+        }
+      },
+      "tivit": {
+        "year": "2017–2019",
+        "role": "Mid-level Analyst",
+        "company": "TIVIT",
+        "desc": "Vehicle tracking solutions. Critical integration between enterprise backend infrastructure and mobile applications.",
+        "badges": {
+          "aspnet": "ASP.NET",
+          "android": "Android Java",
+          "oracle": "Oracle"
+        }
+      },
+      "quality": {
+        "year": "2019",
+        "role": "Mid-level Analyst",
+        "company": "Quality S.A. / Wilson Sons",
+        "desc": "Evolution of HR corporate software, building and improving interfaces focused on PLR (profit sharing).",
+        "badges": {
+          "mvc": "C# MVC 6",
+          "ef": "Entity FW",
+          "oracle": "Oracle"
+        }
+      },
+      "brq": {
+        "year": "2020–2022",
+        "role": "Mid-level Analyst",
+        "company": "BRQ / Líder Insurance",
+        "desc": "Modernization of legal software. Strong focus on performance improvements and modular refactoring.",
+        "badges": {
+          "webapi": "Web.Api",
+          "jquery": "jQuery",
+          "sqlserver": "SQL Server"
+        }
+      },
+      "mercanet": {
+        "year": "2022–2023",
+        "role": "Mid-level Analyst",
+        "company": "Mercanet",
+        "desc": "Structural maintenance and technical migration work. Transforming legacy systems into modern stacks.",
+        "badges": {
+          "webforms": "WebForms",
+          "nhibernate": "NHibernate",
+          "knockout": "Knockout"
+        }
+      },
+      "g4f": {
+        "year": "2023–2024",
+        "role": "Senior Analyst",
+        "company": "G4F",
+        "desc": "REST API and shared libraries architect. Leap to the modern ecosystem leading full end-to-end Full-Stack delivery.",
+        "badges": {
+          "dotnet": ".NET Core",
+          "angular": "Angular 15",
+          "rest": "REST"
+        }
+      },
+      "ccaa": {
+        "year": "2024–Present",
+        "role": "Senior Full Stack",
+        "company": "CCAA",
+        "desc": "Top-tier processing! Development focused on high modularity. Robust CI/CD, efficient Git versioning, and scalable high-impact deliveries.",
+        "badges": {
+          "dotnet": ".NET Core",
+          "angular": "Angular 19",
+          "azure": "Azure DevOps"
+        }
+      }
+    },
     "items": {
       "ccaa": {
         "when": "2024 — Present",

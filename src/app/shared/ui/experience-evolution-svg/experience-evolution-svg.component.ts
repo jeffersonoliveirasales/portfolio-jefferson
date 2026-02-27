@@ -4,10 +4,12 @@ import {
   ElementRef,
   ViewChild
 } from '@angular/core';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-experience-evolution-svg',
   standalone: true,
+  imports: [TranslateModule],
   templateUrl: './experience-evolution-svg.component.html',
   styleUrls: ['./experience-evolution-svg.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
