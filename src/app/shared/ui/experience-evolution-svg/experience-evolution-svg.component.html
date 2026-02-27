@@ -54,7 +54,7 @@
       .draw-trace {
         stroke-dasharray: 4000;
         stroke-dashoffset: 4000;
-        animation: drawPath 4.5s ease-out forwards;
+        animation: drawPath 7s ease-out forwards;
       }
       @keyframes drawPath {
         to {
@@ -64,7 +64,7 @@
 
       .energy-stream {
         stroke-dasharray: 15 60;
-        animation: flowData 2s linear infinite;
+        animation: flowData 3.2s linear infinite;
         opacity: 0.8;
       }
       @keyframes flowData {
@@ -76,7 +76,7 @@
       .reveal-node {
         opacity: 0;
         transform-origin: center;
-        animation: popUp 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        animation: popUp 0.9s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
       }
       @keyframes popUp {
         0% {
@@ -239,7 +239,7 @@
       />
     </g>
 
-    <g class="reveal-node" style="animation-delay: 0.5s;">
+    <g class="reveal-node" style="animation-delay: 0.8s;">
       <line x1="300" y1="480" x2="300" y2="520" stroke="#00e5ff" stroke-width="2" />
       <circle cx="300" cy="480" r="10" fill="#050a15" stroke="#00e5ff" stroke-width="3" filter="url(#glowCyan)" />
       <circle cx="300" cy="480" r="3" fill="#ffffff" />
@@ -258,7 +258,7 @@
       </foreignObject>
     </g>
 
-    <g class="reveal-node" style="animation-delay: 1.0s;">
+    <g class="reveal-node" style="animation-delay: 1.6s;">
       <line x1="700" y1="370" x2="700" y2="330" stroke="#00e5ff" stroke-width="2" />
       <circle cx="700" cy="370" r="10" fill="#050a15" stroke="#00e5ff" stroke-width="3" filter="url(#glowCyan)" />
       <circle cx="700" cy="370" r="3" fill="#ffffff" />
@@ -276,7 +276,7 @@
       </foreignObject>
     </g>
 
-    <g class="reveal-node" style="animation-delay: 1.5s;">
+    <g class="reveal-node" style="animation-delay: 2.4s;">
       <line x1="1100" y1="480" x2="1100" y2="520" stroke="#0077ff" stroke-width="2" />
       <circle cx="1100" cy="480" r="10" fill="#050a15" stroke="#0077ff" stroke-width="3" filter="url(#glowCyan)" />
       <circle cx="1100" cy="480" r="3" fill="#ffffff" />
@@ -295,7 +295,7 @@
       </foreignObject>
     </g>
 
-    <g class="reveal-node" style="animation-delay: 2.0s;">
+    <g class="reveal-node" style="animation-delay: 3.2s;">
       <line x1="1500" y1="370" x2="1500" y2="330" stroke="#0077ff" stroke-width="2" />
       <circle cx="1500" cy="370" r="10" fill="#050a15" stroke="#0077ff" stroke-width="3" filter="url(#glowCyan)" />
       <circle cx="1500" cy="370" r="3" fill="#ffffff" />
@@ -313,7 +313,7 @@
       </foreignObject>
     </g>
 
-    <g class="reveal-node" style="animation-delay: 2.5s;">
+    <g class="reveal-node" style="animation-delay: 4.0s;">
       <line x1="1900" y1="480" x2="1900" y2="520" stroke="#d900ff" stroke-width="2" />
       <circle cx="1900" cy="480" r="10" fill="#050a15" stroke="#d900ff" stroke-width="3" filter="url(#glowPink)" />
       <circle cx="1900" cy="480" r="3" fill="#ffffff" />
@@ -332,7 +332,7 @@
       </foreignObject>
     </g>
 
-    <g class="reveal-node" style="animation-delay: 3.0s;">
+    <g class="reveal-node" style="animation-delay: 4.8s;">
       <line x1="2300" y1="370" x2="2300" y2="330" stroke="#d900ff" stroke-width="2" />
       <circle cx="2300" cy="370" r="10" fill="#050a15" stroke="#d900ff" stroke-width="3" filter="url(#glowPink)" />
       <circle cx="2300" cy="370" r="3" fill="#ffffff" />
@@ -350,7 +350,7 @@
       </foreignObject>
     </g>
 
-    <g class="reveal-node" style="animation-delay: 3.5s;">
+    <g class="reveal-node" style="animation-delay: 5.6s;">
       <line x1="2700" y1="480" x2="2700" y2="520" stroke="#ff0055" stroke-width="2" />
       <circle cx="2700" cy="480" r="10" fill="#050a15" stroke="#ff0055" stroke-width="3" filter="url(#glowPink)" />
       <circle cx="2700" cy="480" r="3" fill="#ffffff" />
@@ -369,7 +369,7 @@
       </foreignObject>
     </g>
 
-    <g class="reveal-node" style="animation-delay: 4.0s;">
+    <g class="reveal-node" style="animation-delay: 6.4s;">
       <line x1="3100" y1="370" x2="3100" y2="330" stroke="#ffcc00" stroke-width="2" />
       <line x1="3090" y1="370" x2="3090" y2="330" stroke="#ffcc00" stroke-width="1.5" opacity="0.5" />
       <line x1="3110" y1="370" x2="3110" y2="330" stroke="#ffcc00" stroke-width="1.5" opacity="0.5" />
@@ -388,6 +388,12 @@
           </div>
         </div>
       </foreignObject>
+    </g>
+
+    <g class="reveal-node" style="animation-delay: 7.4s;">
+      <circle cx="3350" cy="370" r="18" fill="none" stroke="#ffffff" stroke-width="1" opacity="0.15" />
+      <circle cx="3350" cy="370" r="11" fill="#050a15" stroke="#ffcc00" stroke-width="3" filter="url(#glowGold)" />
+      <circle cx="3350" cy="370" r="4" fill="#ffcc00" />
     </g>
   </svg>
 </div>
