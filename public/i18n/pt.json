@@ -5,7 +5,7 @@
     "about": "Sobre",
     "legacy": "Legado",
     "projects": "Projetos",
-    "experience": "Experiência",
+    "experience": "Experiência Profissional",
     "education": "Formação",
     "courses": "Cursos",
     "skills": "Skills",
@@ -271,7 +271,7 @@
     }
   },
   "experience": {
-    "eyebrow": "Experiência",
+    "eyebrow": "Experiência Profissional",
     "title": "Linha do tempo (enterprise-ready)",
     "lead": "Foco em impacto, contexto real, sustentação e evolução de sistemas.",
     "items": {

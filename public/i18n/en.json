@@ -5,7 +5,7 @@
     "about": "About",
     "legacy": "Legacy",
     "projects": "Projects",
-    "experience": "Experience",
+    "experience": "Professional Experience",
     "education": "Education",
     "courses": "Courses",
     "skills": "Skills",
@@ -271,9 +271,9 @@
     }
   },
   "experience": {
-    "eyebrow": "Experience",
+    "eyebrow": "Professional Experience",
     "title": "Timeline (enterprise-ready)",
-    "lead": "Focused on impact, real context, support and continuous system evolution.",
+    "lead": "Hands-on impact, real context, maintenance and system evolution.",
     "items": {
       "ccaa": {
         "when": "2024 — Present",
