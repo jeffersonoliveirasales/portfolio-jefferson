@@ -4,7 +4,6 @@ import {
   Component,
   DestroyRef,
   ElementRef,
-  NgZone,
   ViewChild,
   inject
 } from '@angular/core';
@@ -12,6 +11,7 @@ import {
 import { TranslateModule } from '@ngx-translate/core';
 
 import { setupGsapReveal } from '../../shared/motion/gsap-reveal';
+import { setupSectionVideo } from '../../shared/motion/section-video';
 
 import { GlassButtonComponent } from '../../shared/ui/glass-button/glass-button.component';
 import { FxTitleComponent } from '../../shared/ui/title-h1/fx-title.component';
@@ -32,7 +32,6 @@ gsap.registerPlugin(ScrollTrigger);
 })
 export class SectionHeroComponent implements AfterViewInit {
   private readonly destroyRef = inject(DestroyRef);
-  private readonly zone = inject(NgZone);
   private readonly host = inject(ElementRef<HTMLElement>);
 
   private navRaf = 0;
@@ -46,56 +45,13 @@ export class SectionHeroComponent implements AfterViewInit {
     const scroller = document.querySelector<HTMLElement>('[data-scroll-container]');
 
     if (video) {
-      video.muted = true;
-      video.defaultMuted = true;
-      video.volume = 0;
-      video.playsInline = true;
-      video.controls = false;
-      video.setAttribute('muted', '');
-
-      const onVolumeChange = () => {
-        if (video.volume !== 0) video.volume = 0;
-        if (!video.muted) video.muted = true;
-      };
-      video.addEventListener('volumechange', onVolumeChange);
-      this.destroyRef.onDestroy(() => video.removeEventListener('volumechange', onVolumeChange));
-
-      const prefersReducedMotion =
-        typeof window !== 'undefined' &&
-        window.matchMedia?.('(prefers-reduced-motion: reduce)')?.matches === true;
-
-      if (prefersReducedMotion) {
-        try {
-          video.pause();
-        } catch {
-          // ignore
-        }
-      } else {
-        const io = new IntersectionObserver(
-          (entries) => {
-            const entry = entries[0];
-            if (!entry) return;
-            if (entry.isIntersecting) {
-              video.muted = true;
-              video.defaultMuted = true;
-              video.setAttribute('muted', '');
-              video.volume = 0;
-              const p = video.play();
-              if (p && typeof (p as Promise<void>).catch === 'function') (p as Promise<void>).catch(() => {});
-            } else {
-              try {
-                video.pause();
-              } catch {
-                // ignore
-              }
-            }
-          },
-          { threshold: 0.15 }
-        );
-
-        io.observe(this.host.nativeElement);
-        this.destroyRef.onDestroy(() => io.disconnect());
-      }
+      setupSectionVideo({
+        host: this.host.nativeElement,
+        video,
+        destroyRef: this.destroyRef,
+        root: scroller ?? null,
+        threshold: 0.15
+      });
     }
 
     setupGsapReveal(this.host.nativeElement, this.destroyRef, { root: scroller });

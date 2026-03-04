@@ -12,7 +12,8 @@ import {
 import { CommonModule } from '@angular/common';
 
 import { gsap } from 'gsap';
-import { Flip, ScrollTrigger } from 'gsap/all';
+import { Flip } from 'gsap/all';
+import ScrollTrigger from 'gsap/ScrollTrigger';
 
 import * as THREE from 'three';
 import type {
@@ -76,6 +77,7 @@ export class Scroll3DComponent implements AfterViewInit {
   private drift = { x: 0, y: 0 };
 
   private slotTargets: Array<{ section: HTMLElement; slot: HTMLElement; index: number }> = [];
+  private currentSlotName = 'hero';
 
   private readonly modelScale = 0.24;
   private readonly modelPosOffset = new THREE.Vector3(0.25, -0.2, 0);
@@ -307,6 +309,7 @@ export class Scroll3DComponent implements AfterViewInit {
     const wrap = this.canvasWrapRef.nativeElement;
     const heroSlot =
       sections.find((s) => s.slot.getAttribute('data-3d-slot') === 'hero')?.slot ?? sections[0].slot;
+    this.currentSlotName = heroSlot.getAttribute('data-3d-slot') ?? 'hero';
 
     if (wrap.parentElement !== heroSlot) {
       heroSlot.appendChild(wrap);
@@ -314,28 +317,35 @@ export class Scroll3DComponent implements AfterViewInit {
       this.refreshST();
     }
 
-    const moveCanvasTo = (slot: HTMLElement) => {
-      const wrap = this.canvasWrapRef.nativeElement;
+    const moveCanvasTo = (slot: HTMLElement, nextSlotName: string) => {
+      const wrapEl = this.canvasWrapRef.nativeElement;
 
       if (this.prefersReducedMotion) {
-        slot.appendChild(wrap);
-        gsap.set(wrap, { clearProps: 'transform' });
+        slot.appendChild(wrapEl);
+        gsap.set(wrapEl, { clearProps: 'transform' });
         this.resizeFn?.();
-        this.refreshST();
+        this.currentSlotName = nextSlotName;
         return;
       }
 
-      const state = Flip.getState(wrap);
-      slot.appendChild(wrap);
+      const prevSlotName = this.currentSlotName;
+      const isObjectiveAboutTransition =
+        (prevSlotName === 'objective' && nextSlotName === 'about') ||
+        (prevSlotName === 'about' && nextSlotName === 'objective');
+
+      const state = Flip.getState(wrapEl);
+      slot.appendChild(wrapEl);
+      this.resizeFn?.();
+
+      this.currentSlotName = nextSlotName;
+
       Flip.from(state, {
-        duration: 0.85,
-        ease: 'power2.out',
+        duration: isObjectiveAboutTransition ? 0.62 : 0.85,
+        ease: isObjectiveAboutTransition ? 'sine.inOut' : 'power2.out',
         absolute: true,
         nested: true,
         onComplete: () => {
-          gsap.set(wrap, { clearProps: 'transform' });
-          this.resizeFn?.();
-          this.refreshST();
+          gsap.set(wrapEl, { clearProps: 'transform' });
         }
       });
     };
@@ -370,24 +380,24 @@ export class Scroll3DComponent implements AfterViewInit {
 
     sections.forEach(({ section, slot, index }) => {
       const pose = this.poseFor(index);
+      const slotName = slot.getAttribute('data-3d-slot') ?? '';
       const trigger = ScrollTrigger.create({
         trigger: section,
         start: 'top center',
         end: 'bottom center',
         scroller,
         onEnter: () => {
-          moveCanvasTo(slot);
+          moveCanvasTo(slot, slotName);
           applyPose(pose);
         },
         onEnterBack: () => {
-          moveCanvasTo(slot);
+          moveCanvasTo(slot, slotName);
           applyPose(pose);
         }
       });
 
       this.triggers.push(trigger);
 
-      const slotName = slot.getAttribute('data-3d-slot') ?? '';
       const wps = Array.from(
         section.querySelectorAll<HTMLElement>(`[data-3d-waypoint="${escapeSelector(slotName)}"]`)
       );
@@ -420,13 +430,7 @@ export class Scroll3DComponent implements AfterViewInit {
 
         wps.forEach((wpEl, i) => {
           const wp = readWp(wpEl);
-          tl.set(
-            slot,
-            {
-              zIndex: wp.z
-            },
-            i
-          );
+          tl.set(slot, { zIndex: wp.z }, i);
           tl.to(
             slot,
             {
@@ -459,7 +463,6 @@ export class Scroll3DComponent implements AfterViewInit {
           onUpdate: (self) => {
             if (!this.modelRoot) return;
             const p = self.progress;
-
             this.rotOffset.y = (p - 0.5) * 0.6;
             this.rotOffset.x = (p - 0.5) * 0.25;
           }

@@ -80,22 +80,26 @@
 
       <div class="skills__cloud" aria-label="Icon cloud">
         <div class="iconcloud-shell">
-          <app-icon-cloud
-            [iconSlugs]="[
-              'dotnet',
-              'angular',
-              'typescript',
-              'javascript',
-              'microsoftazure',
-              'docker',
-              'git',
-              'jira',
-              'github',
-              'sonarqube',
-              'visualstudiocode',
-              'microsoftsqlserver'
-            ]"
-          />
+          @defer (on viewport; prefetch on idle) {
+            <app-icon-cloud
+              [iconSlugs]="[
+                'dotnet',
+                'angular',
+                'typescript',
+                'javascript',
+                'microsoftazure',
+                'docker',
+                'git',
+                'jira',
+                'github',
+                'sonarqube',
+                'visualstudiocode',
+                'microsoftsqlserver'
+              ]"
+            />
+          } @placeholder {
+            <div style="min-height: 320px;"></div>
+          }
         </div>
       </div>
     </div>

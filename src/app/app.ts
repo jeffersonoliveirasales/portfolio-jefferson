@@ -59,7 +59,10 @@ export class App implements AfterViewInit {
     { id: 'contato', labelKey: 'nav.contact' }
   ] as const;
 
+  private readonly sectionIdSet = new Set<string>(this.sections.map((s) => s.id));
+
   protected readonly activeSectionId = signal<(typeof this.sections)[number]['id']>('home');
+  protected readonly enableScroll3D = signal(true);
 
   constructor() {
     this.translate.addLangs(['pt', 'en']);
@@ -74,6 +77,14 @@ export class App implements AfterViewInit {
     document.documentElement.lang = lang === 'pt' ? 'pt-BR' : 'en';
   }
 
+  private shouldEnableScroll3D(): boolean {
+    if (typeof window === 'undefined') return false;
+    const isMobile = window.matchMedia?.('(max-width: 900px)')?.matches === true;
+    const prefersReducedMotion =
+      window.matchMedia?.('(prefers-reduced-motion: reduce)')?.matches === true;
+    return !isMobile && !prefersReducedMotion;
+  }
+
   private safeGetStoredLang(): string | null {
     try {
       return localStorage.getItem('lang');
@@ -83,6 +94,8 @@ export class App implements AfterViewInit {
   }
 
   ngAfterViewInit(): void {
+    this.enableScroll3D.set(this.shouldEnableScroll3D());
+
     const container = document.querySelector<HTMLElement>('[data-scroll-container]');
     const sectionEls = Array.from(
       document.querySelectorAll<HTMLElement>('[data-section]')
@@ -105,30 +118,27 @@ export class App implements AfterViewInit {
         ? (root as HTMLElement).getBoundingClientRect()
         : ({ top: 0, bottom: window.innerHeight, height: window.innerHeight } as DOMRect);
 
-      const visible = sectionEls
-        .map((el) => ({ el, rect: el.getBoundingClientRect() }))
-        .filter(({ rect }) => rect.bottom > containerRect.top && rect.top < containerRect.bottom);
+      let closestEl: HTMLElement | null = null;
+      let closestDist = Number.POSITIVE_INFINITY;
+      const centerY = containerRect.top + containerRect.height / 2;
 
-      if (visible.length === 0) return;
+      for (const el of sectionEls) {
+        const rect = el.getBoundingClientRect();
+        if (rect.bottom <= containerRect.top || rect.top >= containerRect.bottom) continue;
 
-      const closest = useBodyScroll
-        ? visible
-            .map(({ el, rect }) => ({
-              el,
-              dist: Math.abs(rect.top)
-            }))
-            .sort((a, b) => a.dist - b.dist)[0]
-        : (() => {
-            const centerY = containerRect.top + containerRect.height / 2;
-            return visible
-              .map(({ el, rect }) => ({
-                el,
-                dist: Math.abs(rect.top + rect.height / 2 - centerY)
-              }))
-              .sort((a, b) => a.dist - b.dist)[0];
-          })();
+        const dist = useBodyScroll
+          ? Math.abs(rect.top)
+          : Math.abs(rect.top + rect.height / 2 - centerY);
 
-      const id = closest?.el.getAttribute('id') as (typeof this.sections)[number]['id'] | null;
+        if (dist < closestDist) {
+          closestDist = dist;
+          closestEl = el;
+        }
+      }
+
+      if (!closestEl) return;
+
+      const id = closestEl.getAttribute('id') as (typeof this.sections)[number]['id'] | null;
       if (id) this.activeSectionId.set(id);
     };
 
@@ -169,8 +179,7 @@ export class App implements AfterViewInit {
   }
 
   protected scrollTo(id: string): void {
-    const validIds = this.sections.map((s) => s.id) as ReadonlyArray<string>;
-    if (!validIds.includes(id)) {
+    if (!this.sectionIdSet.has(id)) {
       return;
     }
 

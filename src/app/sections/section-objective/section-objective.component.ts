@@ -4,6 +4,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 import { setupGsapReveal } from '../../shared/motion/gsap-reveal';
+import { setupSectionVideo } from '../../shared/motion/section-video';
 import { BentoGridComponent, BentoItem } from '../../shared/components/bento-grid/bento-grid.component';
 import { FxTitleComponent } from '../../shared/ui/title-h1/fx-title.component';
 import { ParallaxDirective } from '../../shared/directives/parallax.directive';
@@ -34,60 +35,18 @@ export class SectionObjectiveComponent implements AfterViewInit {
 
   ngAfterViewInit(): void {
     const video = this.bgVideo?.nativeElement;
+    const root = document.querySelector<HTMLElement>('[data-scroll-container]');
+
     if (video) {
-      video.muted = true;
-      video.defaultMuted = true;
-      video.volume = 0;
-      video.playsInline = true;
-      video.controls = false;
-      video.setAttribute('muted', '');
-
-      const onVolumeChange = () => {
-        if (video.volume !== 0) video.volume = 0;
-        if (!video.muted) video.muted = true;
-      };
-      video.addEventListener('volumechange', onVolumeChange);
-      this.destroyRef.onDestroy(() => video.removeEventListener('volumechange', onVolumeChange));
-
-      const prefersReducedMotion =
-        typeof window !== 'undefined' &&
-        window.matchMedia?.('(prefers-reduced-motion: reduce)')?.matches === true;
-
-      if (prefersReducedMotion) {
-        try {
-          video.pause();
-        } catch {
-          // ignore
-        }
-      } else {
-        const io = new IntersectionObserver(
-          (entries) => {
-            const entry = entries[0];
-            if (!entry) return;
-            if (entry.isIntersecting) {
-              video.muted = true;
-              video.defaultMuted = true;
-              video.setAttribute('muted', '');
-              video.volume = 0;
-              const p = video.play();
-              if (p && typeof (p as Promise<void>).catch === 'function') (p as Promise<void>).catch(() => {});
-            } else {
-              try {
-                video.pause();
-              } catch {
-                // ignore
-              }
-            }
-          },
-          { threshold: 0.15 }
-        );
-
-        io.observe(this.host.nativeElement);
-        this.destroyRef.onDestroy(() => io.disconnect());
-      }
+      setupSectionVideo({
+        host: this.host.nativeElement,
+        video,
+        destroyRef: this.destroyRef,
+        root: root ?? null,
+        threshold: 0.15
+      });
     }
 
-    const root = document.querySelector('[data-scroll-container]');
     setupGsapReveal(this.host.nativeElement, this.destroyRef, { root });
   }
 
