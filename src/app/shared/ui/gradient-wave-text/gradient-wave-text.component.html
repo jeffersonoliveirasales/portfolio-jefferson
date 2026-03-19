@@ -1,0 +1,22 @@
+<div
+  #host
+  class="gradient-wave-text"
+  [ngClass]="wrapperClass"
+  [style.justify-content]="justifyContent"
+  [attr.aria-label]="ariaLabel || null"
+  [attr.role]="ariaLabel ? 'img' : null"
+  (click)="handleClick($event)"
+  (mouseenter)="handleMouseEnter($event)"
+  (mouseleave)="handleMouseLeave($event)"
+>
+  <span
+    class="gradient-wave-text__text"
+    [ngClass]="textClass"
+    [style.text-align]="align"
+    [style.background-image]="gradient"
+    [style.padding-bottom.%]="bottomOffset"
+    [style.margin-bottom.%]="-bottomOffset"
+  >
+    <ng-content></ng-content>
+  </span>
+</div>

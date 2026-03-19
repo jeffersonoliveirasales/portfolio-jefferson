@@ -13,11 +13,12 @@ import { TranslateModule } from '@ngx-translate/core';
 import { setupGsapReveal } from '../../shared/motion/gsap-reveal';
 import { ExperienceEvolutionSvgComponent } from '../../shared/ui/experience-evolution-svg/experience-evolution-svg.component';
 import { FxTitleComponent } from '../../shared/ui/title-h1/fx-title.component';
+import { GradientWaveTextComponent } from '../../shared/ui/gradient-wave-text/gradient-wave-text.component';
 
 @Component({
   selector: 'app-section-experience',
   standalone: true,
-  imports: [TranslateModule, FxTitleComponent, ExperienceEvolutionSvgComponent],
+  imports: [TranslateModule, FxTitleComponent, GradientWaveTextComponent, ExperienceEvolutionSvgComponent],
   templateUrl: './section-experience.component.html',
   styleUrls: ['./section-experience.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush

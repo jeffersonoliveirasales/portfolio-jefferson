@@ -7,12 +7,13 @@ import { setupGsapReveal } from '../../shared/motion/gsap-reveal';
 import { setupSectionVideo } from '../../shared/motion/section-video';
 import { BentoGridComponent, BentoItem } from '../../shared/components/bento-grid/bento-grid.component';
 import { FxTitleComponent } from '../../shared/ui/title-h1/fx-title.component';
+import { GradientWaveTextComponent } from '../../shared/ui/gradient-wave-text/gradient-wave-text.component';
 import { ParallaxDirective } from '../../shared/directives/parallax.directive';
 
 @Component({
   selector: 'app-section-objective',
   standalone: true,
-  imports: [TranslateModule, BentoGridComponent, FxTitleComponent, ParallaxDirective],
+  imports: [TranslateModule, BentoGridComponent, FxTitleComponent, GradientWaveTextComponent, ParallaxDirective],
   templateUrl: './section-objective.component.html',
   styleUrls: ['./section-objective.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush

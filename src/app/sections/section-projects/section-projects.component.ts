@@ -5,11 +5,12 @@ import { TranslateModule } from '@ngx-translate/core';
 import { StaggerTestimonialsComponent } from '../../components/stagger-testimonials/stagger-testimonials.component';
 import { setupGsapReveal } from '../../shared/motion/gsap-reveal';
 import { FxTitleComponent } from '../../shared/ui/title-h1/fx-title.component';
+import { GradientWaveTextComponent } from '../../shared/ui/gradient-wave-text/gradient-wave-text.component';
 
 @Component({
   selector: 'app-section-projects',
   standalone: true,
-  imports: [TranslateModule, StaggerTestimonialsComponent, FxTitleComponent],
+  imports: [TranslateModule, StaggerTestimonialsComponent, FxTitleComponent, GradientWaveTextComponent],
   templateUrl: './section-projects.component.html',
   styleUrls: ['./section-projects.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush

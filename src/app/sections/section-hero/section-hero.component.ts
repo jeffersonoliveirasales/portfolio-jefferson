@@ -14,6 +14,7 @@ import { setupGsapReveal } from '../../shared/motion/gsap-reveal';
 import { setupSectionVideo } from '../../shared/motion/section-video';
 
 import { GlassButtonComponent } from '../../shared/ui/glass-button/glass-button.component';
+import { GradientWaveTextComponent } from '../../shared/ui/gradient-wave-text/gradient-wave-text.component';
 import { FxTitleComponent } from '../../shared/ui/title-h1/fx-title.component';
 import { ParallaxDirective } from '../../shared/directives/parallax.directive';
 
@@ -25,7 +26,13 @@ gsap.registerPlugin(ScrollTrigger);
 @Component({
   selector: 'app-section-hero',
   standalone: true,
-  imports: [TranslateModule, GlassButtonComponent, FxTitleComponent, ParallaxDirective],
+  imports: [
+    TranslateModule,
+    GlassButtonComponent,
+    GradientWaveTextComponent,
+    FxTitleComponent,
+    ParallaxDirective
+  ],
   templateUrl: './section-hero.component.html',
   styleUrls: ['./section-hero.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush

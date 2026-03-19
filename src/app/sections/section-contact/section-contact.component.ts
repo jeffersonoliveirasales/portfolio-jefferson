@@ -6,12 +6,13 @@ import { setupGsapReveal } from '../../shared/motion/gsap-reveal';
 
 import { GlassButtonComponent } from '../../shared/ui/glass-button/glass-button.component';
 import { FxTitleComponent } from '../../shared/ui/title-h1/fx-title.component';
+import { GradientWaveTextComponent } from '../../shared/ui/gradient-wave-text/gradient-wave-text.component';
 import { CvGateModalComponent } from '../../shared/ui/cv-gate-modal/cv-gate-modal.component';
 
 @Component({
   selector: 'app-section-contact',
   standalone: true,
-  imports: [TranslateModule, GlassButtonComponent, FxTitleComponent, CvGateModalComponent],
+  imports: [TranslateModule, GlassButtonComponent, FxTitleComponent, GradientWaveTextComponent, CvGateModalComponent],
   templateUrl: './section-contact.component.html',
   styleUrls: ['./section-contact.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush

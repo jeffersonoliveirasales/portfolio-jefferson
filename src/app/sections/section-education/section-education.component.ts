@@ -11,6 +11,7 @@ import {
 import { TranslateModule } from '@ngx-translate/core';
 import { setupGsapReveal } from '../../shared/motion/gsap-reveal';
 import { FxTitleComponent } from '../../shared/ui/title-h1/fx-title.component';
+import { GradientWaveTextComponent } from '../../shared/ui/gradient-wave-text/gradient-wave-text.component';
 
 type EducationItem = {
   key: string;
@@ -25,7 +26,7 @@ type EducationItem = {
 @Component({
   selector: 'app-section-education',
   standalone: true,
-  imports: [TranslateModule, FxTitleComponent],
+  imports: [TranslateModule, FxTitleComponent, GradientWaveTextComponent],
   templateUrl: './section-education.component.html',
   styleUrls: ['./section-education.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush

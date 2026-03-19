@@ -6,11 +6,12 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { setupGsapReveal } from '../../shared/motion/gsap-reveal';
 import { BentoGridComponent, BentoItem } from '../../shared/components/bento-grid/bento-grid.component';
 import { FxTitleComponent } from '../../shared/ui/title-h1/fx-title.component';
+import { GradientWaveTextComponent } from '../../shared/ui/gradient-wave-text/gradient-wave-text.component';
 
 @Component({
   selector: 'app-section-legacy',
   standalone: true,
-  imports: [TranslateModule, BentoGridComponent, FxTitleComponent],
+  imports: [TranslateModule, BentoGridComponent, FxTitleComponent, GradientWaveTextComponent],
   templateUrl: './section-legacy.component.html',
   styleUrls: ['./section-legacy.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush

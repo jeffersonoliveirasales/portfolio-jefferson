@@ -5,11 +5,12 @@ import { TranslateModule } from '@ngx-translate/core';
 import { setupGsapReveal } from '../../shared/motion/gsap-reveal';
 import { IconCloudComponent } from '../../shared/components/icon-cloud/icon-cloud.component';
 import { FxTitleComponent } from '../../shared/ui/title-h1/fx-title.component';
+import { GradientWaveTextComponent } from '../../shared/ui/gradient-wave-text/gradient-wave-text.component';
 
 @Component({
   selector: 'app-section-skills',
   standalone: true,
-  imports: [TranslateModule, IconCloudComponent, FxTitleComponent],
+  imports: [TranslateModule, IconCloudComponent, FxTitleComponent, GradientWaveTextComponent],
   templateUrl: './section-skills.component.html',
   styleUrls: ['./section-skills.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush

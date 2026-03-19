@@ -4,6 +4,7 @@ import { TranslateModule } from '@ngx-translate/core';
 
 import { setupGsapReveal } from '../../shared/motion/gsap-reveal';
 import { FxTitleComponent } from '../../shared/ui/title-h1/fx-title.component';
+import { GradientWaveTextComponent } from '../../shared/ui/gradient-wave-text/gradient-wave-text.component';
 
 type AccordionItem = {
   id: number;
@@ -14,7 +15,7 @@ type AccordionItem = {
 @Component({
   selector: 'app-section-courses',
   standalone: true,
-  imports: [TranslateModule, FxTitleComponent],
+  imports: [TranslateModule, FxTitleComponent, GradientWaveTextComponent],
   templateUrl: './section-courses.component.html',
   styleUrls: ['./section-courses.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush

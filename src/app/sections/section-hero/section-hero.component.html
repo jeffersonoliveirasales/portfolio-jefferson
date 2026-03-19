@@ -35,7 +35,19 @@
 
   <div class="section__inner hero__content">
     <div class="hero__copy" data-reveal>
-      <p class="hero__kicker">{{ 'hero.name' | translate }}</p>
+      <app-gradient-wave-text
+        class="hero__kicker-wave"
+        align="left"
+        [speed]="0.9"
+        [inView]="true"
+        [once]="false"
+        [bottomOffset]="8"
+        [bandCount]="4"
+        [bandGap]="6"
+        palette="subtle"
+      >
+        {{ 'hero.name' | translate }}
+      </app-gradient-wave-text>
 
       <app-fx-title
         class="hero__title section__title section__title--shine"

@@ -1,0 +1,36 @@
+:host {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.gradient-wave-text {
+  display: flex;
+  width: 100%;
+  height: auto;
+  align-items: center;
+  --gradient-wave-base: rgb(229, 231, 235);
+}
+
+:host-context(.dark) .gradient-wave-text {
+  --gradient-wave-base: rgb(243, 244, 246);
+}
+
+.gradient-wave-text__text {
+  display: inline-block;
+  color: transparent;
+  white-space: pre-wrap;
+  word-break: break-word;
+  padding-inline: 2px;
+
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  transform: translateZ(0);
+}

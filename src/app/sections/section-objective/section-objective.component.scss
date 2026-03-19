@@ -75,6 +75,12 @@
   gap: 22px;
 }
 
+app-gradient-wave-text.section__eyebrow {
+  display: inline-block;
+  width: auto;
+  height: auto;
+}
+
 @media (max-width: 980px) {
   .grid-3 {
     grid-template-columns: 1fr;

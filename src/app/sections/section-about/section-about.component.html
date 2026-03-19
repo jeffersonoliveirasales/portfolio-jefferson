@@ -19,7 +19,19 @@
 
   <div class="section__inner about__content">
     <header class="section__header" data-reveal>
-      <p class="section__eyebrow">{{ 'about.eyebrow' | translate }}</p>
+      <app-gradient-wave-text
+        class="section__eyebrow"
+        align="left"
+        [speed]="0.9"
+        [inView]="true"
+        [once]="false"
+        [bottomOffset]="0"
+        [bandCount]="4"
+        [bandGap]="6"
+        palette="subtle"
+      >
+        {{ 'about.eyebrow' | translate }}
+      </app-gradient-wave-text>
       <app-fx-title
         class="section__title section__title--shine"
         [text]="'about.title' | translate"
