@@ -80,24 +80,24 @@
 
       <div class="skills__cloud" aria-label="Icon cloud">
         <div class="iconcloud-shell">
-          @defer (on viewport; prefetch on idle) {
+          @if (showIconCloud()) {
             <app-icon-cloud
               [iconSlugs]="[
                 'dotnet',
                 'angular',
                 'typescript',
                 'javascript',
-                'microsoftazure',
+                'nuget',
                 'docker',
                 'git',
                 'jira',
                 'github',
-                'sonarqube',
-                'visualstudiocode',
-                'microsoftsqlserver'
+                'postgresql',
+                'mysql',
+                'swagger'
               ]"
             />
-          } @placeholder {
+          } @else {
             <div style="min-height: 320px;"></div>
           }
         </div>

@@ -118,27 +118,39 @@ export class App implements AfterViewInit {
         ? (root as HTMLElement).getBoundingClientRect()
         : ({ top: 0, bottom: window.innerHeight, height: window.innerHeight } as DOMRect);
 
-      let closestEl: HTMLElement | null = null;
-      let closestDist = Number.POSITIVE_INFINITY;
-      const centerY = containerRect.top + containerRect.height / 2;
+      const viewportHeight = Math.max(1, containerRect.height);
+      const centerY = containerRect.top + viewportHeight / 2;
+
+      let bestEl: HTMLElement | null = null;
+      let bestVisibleRatio = -1;
+      let bestCenterDist = Number.POSITIVE_INFINITY;
 
       for (const el of sectionEls) {
         const rect = el.getBoundingClientRect();
-        if (rect.bottom <= containerRect.top || rect.top >= containerRect.bottom) continue;
+        const visibleTop = Math.max(rect.top, containerRect.top);
+        const visibleBottom = Math.min(rect.bottom, containerRect.bottom);
+        const visibleHeight = Math.max(0, visibleBottom - visibleTop);
+        if (visibleHeight <= 0) continue;
 
-        const dist = useBodyScroll
+        const visibleRatio = visibleHeight / Math.max(1, Math.min(rect.height, viewportHeight));
+        const centerDist = useBodyScroll
           ? Math.abs(rect.top)
           : Math.abs(rect.top + rect.height / 2 - centerY);
 
-        if (dist < closestDist) {
-          closestDist = dist;
-          closestEl = el;
+        const isBetterRatio = visibleRatio > bestVisibleRatio + 0.0001;
+        const isTieWithCloserCenter =
+          Math.abs(visibleRatio - bestVisibleRatio) <= 0.0001 && centerDist < bestCenterDist;
+
+        if (isBetterRatio || isTieWithCloserCenter) {
+          bestVisibleRatio = visibleRatio;
+          bestCenterDist = centerDist;
+          bestEl = el;
         }
       }
 
-      if (!closestEl) return;
+      if (!bestEl) return;
 
-      const id = closestEl.getAttribute('id') as (typeof this.sections)[number]['id'] | null;
+      const id = bestEl.getAttribute('id') as (typeof this.sections)[number]['id'] | null;
       if (id) this.activeSectionId.set(id);
     };
 

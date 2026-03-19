@@ -44,7 +44,6 @@ export class IconCloudComponent implements AfterViewInit {
 
   private resizeObserver?: ResizeObserver;
   private started = false;
-  private readonly debug = false;
 
   private readonly options = {
     reverse: true,
@@ -87,6 +86,14 @@ export class IconCloudComponent implements AfterViewInit {
     return document.documentElement.classList.contains('dark');
   }
 
+  private createFallbackIconDataUri(label: string): string {
+    const text = (label || 'icon').slice(0, 2).toUpperCase();
+    const bg = this.isDark() ? '#1f2937' : '#e5e7eb';
+    const fg = this.isDark() ? '#d1d5db' : '#374151';
+    const svg = `<svg xmlns='http://www.w3.org/2000/svg' width='64' height='64' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='${bg}'/><text x='50%' y='54%' text-anchor='middle' font-family='Arial, sans-serif' font-size='20' fill='${fg}'>${text}</text></svg>`;
+    return `data:image/svg+xml;utf8,${encodeURIComponent(svg)}`;
+  }
+
   private async init(): Promise<void> {
     const items = await this.buildIcons();
 
@@ -94,6 +101,10 @@ export class IconCloudComponent implements AfterViewInit {
       this.items = items;
       this.cdr.markForCheck();
     });
+
+    if (!items.length) {
+      return;
+    }
 
     await this.waitForImages();
 
@@ -162,9 +173,7 @@ export class IconCloudComponent implements AfterViewInit {
     if (!canvas.width || !canvas.height) return;
 
     const TagCanvas = await this.loadTagCanvas();
-    if (!TagCanvas) {
-      return;
-    }
+    if (!TagCanvas) return;
 
     const opts = this.prefersReducedMotion()
       ? { ...this.options, maxSpeed: 0, minSpeed: 0 }
@@ -189,6 +198,9 @@ export class IconCloudComponent implements AfterViewInit {
         }, ms);
       });
 
+    await wait(0);
+    await new Promise<void>((resolve) => requestAnimationFrame(() => resolve()));
+
     const imgs = Array.from(host.querySelectorAll('img')) as HTMLImageElement[];
     if (imgs.length === 0) {
       await wait(0);
@@ -197,22 +209,60 @@ export class IconCloudComponent implements AfterViewInit {
 
     const tasks = imgs.map((img) =>
       new Promise<void>((resolve) => {
-        if (img.complete) {
-          resolve();
-          return;
-        }
+        let done = false;
+        let timeoutId = 0;
 
-        const onDone = () => {
-          img.removeEventListener('load', onDone);
-          img.removeEventListener('error', onDone);
+        const finish = () => {
+          if (done) return;
+          done = true;
+          if (timeoutId) {
+            window.clearTimeout(timeoutId);
+            timeoutId = 0;
+          }
+          img.removeEventListener('load', onLoad);
+          img.removeEventListener('error', onError);
           resolve();
         };
 
-        img.addEventListener('load', onDone, { once: true });
-        img.addEventListener('error', onDone, { once: true });
+        const applyFallback = () => {
+          if (img.dataset['fallbackApplied'] === '1') {
+            finish();
+            return;
+          }
+
+          img.dataset['fallbackApplied'] = '1';
+          img.src = this.createFallbackIconDataUri(img.alt || 'icon');
+
+          if (img.complete) {
+            finish();
+          }
+        };
+
+        const onLoad = () => {
+          finish();
+        };
+
+        const onError = () => {
+          applyFallback();
+        };
+
+        img.addEventListener('load', onLoad);
+        img.addEventListener('error', onError);
+
+        timeoutId = window.setTimeout(() => {
+          applyFallback();
+        }, 3000);
+
+        if (img.complete) {
+          if (img.naturalWidth > 0) {
+            finish();
+          } else {
+            applyFallback();
+          }
+        }
       })
     );
 
-    await Promise.race([Promise.all(tasks), wait(2000)]);
+    await Promise.all(tasks);
   }
 }
