@@ -35,6 +35,8 @@
     "eyebrow": "Career objective",
     "title": "Senior Full Stack, focused on architecture & delivery",
     "lead": "Work as a Senior Full Stack developer applying advanced .NET and Angular experience, API architecture, Clean Architecture, complex integrations and CI/CD — building scalable, high-performance, high-quality solutions.",
+    "leadSvg": "/img/texto-atuacao-en.svg",
+    "qualitySvg": "/img/objetivo-quality-en.svg",
     "cards": {
       "scalabilityTitle": "Scalability",
       "scalabilityText": "APIs and systems designed to scale safely.",

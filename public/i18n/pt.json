@@ -35,6 +35,8 @@
     "eyebrow": "Objetivo profissional",
     "title": "Full Stack Sênior, com foco em arquitetura e entrega",
     "lead": "Atuar como Desenvolvedor Full Stack Senior aplicando experiência avançada em .NET e Angular, arquitetura de APIs, Clean Architecture, integrações complexas e CI/CD — contribuindo com soluções escaláveis, performáticas e de alta qualidade.",
+    "leadSvg": "/img/texto-atuacao.svg",
+    "qualitySvg": "/img/objetivo-quality.svg",
     "cards": {
       "scalabilityTitle": "Escalabilidade",
       "scalabilityText": "Design de APIs e sistemas pensados para crescer com segurança.",
