@@ -1,9 +1,3 @@
-.grid-3 {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 18px;
-}
-
 .objective {
   position: relative;
   overflow: hidden;
@@ -15,21 +9,6 @@
   z-index: 0;
   isolation: isolate;
   overflow: hidden;
-}
-
-.objective__bg-video {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  pointer-events: none;
-
-  opacity: 0.18;
-  filter: saturate(1.15) contrast(1.08) blur(0.6px);
-  mix-blend-mode: screen;
-  transform: translate3d(var(--parallax-x, 0px), var(--parallax-y, 0px), 0) scale(1.06);
-  transform-origin: center;
 }
 
 .objective__bg-vignette {
@@ -90,17 +69,7 @@ app-gradient-wave-text.section__eyebrow {
 }
 
 @media (max-width: 980px) {
-  .grid-3 {
-    grid-template-columns: 1fr;
-  }
-
   .objective__quality {
     width: 100%;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .objective__bg-video {
-    display: none;
   }
 }
