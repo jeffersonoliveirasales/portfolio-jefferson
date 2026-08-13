@@ -55,7 +55,7 @@ export class SectionCoursesComponent implements AfterViewInit {
       id: 5,
       titleKey: 'courses.accordion.items.csharpAdvanced',
       imageUrl:
-        'https://ninelabs.blog/wp-content/uploads/2024/07/C-2.png'
+        'https://lab.blocodenotas.pt/wp-content/uploads/2026/04/feat.jpg'
     }
   ];
 

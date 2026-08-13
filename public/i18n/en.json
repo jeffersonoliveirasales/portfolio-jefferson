@@ -13,7 +13,7 @@
   },
   "hero": {
     "name": "Jefferson Oliveira Sales",
-    "title": "Full Stack Senior — .NET & Angular",
+    "title": "Full Stack Senior - .NET & Angular",
     "subtitle1": "API architecture, Clean Architecture, complex integrations and CI/CD (Azure DevOps).",
     "subtitle2": "Niterói, Brazil • 14+ years in enterprise systems",
     "ctaProjects": "View Projects",
@@ -34,7 +34,7 @@
   "objective": {
     "eyebrow": "Career objective",
     "title": "Senior Full Stack, focused on architecture & delivery",
-    "lead": "Work as a Senior Full Stack developer applying advanced .NET and Angular experience, API architecture, Clean Architecture, complex integrations and CI/CD — building scalable, high-performance, high-quality solutions.",
+    "lead": "Work as a Senior Full Stack developer applying advanced .NET and Angular experience, API architecture, Clean Architecture, complex integrations and CI/CD - building scalable, high-performance, high-quality solutions.",
     "leadSvg": "/img/texto-atuacao-en.svg",
     "qualitySvg": "/img/objetivo-quality-en.svg",
     "cards": {
@@ -67,7 +67,7 @@
       "legacyTitle": "Legacy technologies",
       "legacyText": "ASP.NET WebForms, MVC 5/6, NHibernate, KnockoutJS, jQuery.",
       "strategyTitle": "Modernization strategy",
-      "strategyText": "Modularization, internal libraries, domain refactoring and incremental migration — no big bang.",
+      "strategyText": "Modularization, internal libraries, domain refactoring and incremental migration - no big bang.",
       "integrationsTitle": "Enterprise integrations",
       "integrationsText": "GovBR, Sankhya ERP, Microsoft Graph API, SOAP/XML and complex business rules."
     }
@@ -78,9 +78,9 @@
     "lead": "Academic background and focused training for software engineering.",
     "cards": {
       "degreeTitle": "Degree",
-      "degreeText": "Systems Analysis and Development — Estácio de Sá University\nStrong foundation in software engineering, focused on system architecture, web development, databases and best practices for building and evolving enterprise applications.",
+      "degreeText": "Systems Analysis and Development - Estácio de Sá University\nStrong foundation in software engineering, focused on system architecture, web development, databases and best practices for building and evolving enterprise applications.",
       "languagesTitle": "Languages",
-      "languagesText": "English — Wise Up\nEnglish applied to professional contexts, with emphasis on technical communication, reading documentation and consuming international technical content.",
+      "languagesText": "English - Wise Up\nEnglish applied to professional contexts, with emphasis on technical communication, reading documentation and consuming international technical content.",
       "methodsTitle": "Ways of working",
       "methodsText": "Work based on agile methods such as Scrum and Kanban, with hands-on experience managing demand, organizing workflow and tracking deliveries using Azure DevOps Boards, Jira and Trello."
     }
@@ -114,26 +114,26 @@
     "accordion": {
       "aria": "Featured courses",
       "items": {
-        "angularCrud": "Angular: Build your first CRUD — Alura",
-        "scrum": "Agile SCRUM — Practical Guide — Udemy",
-        "efCore": "Entity Framework Core — Complete — Udemy",
-        "cleanCode": "Clean Code in Practice — Udemy",
-        "csharpAdvanced": "Advanced C# Features — Infnet"
+        "angularCrud": "Angular: Build your first CRUD - Alura",
+        "scrum": "Agile SCRUM - Practical Guide - Udemy",
+        "efCore": "Entity Framework Core - Complete - Udemy",
+        "cleanCode": "Clean Code in Practice - Udemy",
+        "csharpAdvanced": "Advanced C# Features - Infnet"
       }
     },
     "items": {
-      "aluraAngular": "Angular: Build your first CRUD — Alura",
-      "scrumUdemy": "Agile SCRUM — Practical Guide — Udemy",
-      "efUdemy": "Entity Framework Core — Complete — Udemy",
-      "cleanCodeUdemy": "Clean Code in Practice — Udemy",
-      "csharpInfnet": "Advanced C# Features — Infnet",
-      "aspDigidata": "ASP.NET C# — Digidata (Rio de Janeiro)"
+      "aluraAngular": "Angular: Build your first CRUD - Alura",
+      "scrumUdemy": "Agile SCRUM - Practical Guide - Udemy",
+      "efUdemy": "Entity Framework Core - Complete - Udemy",
+      "cleanCodeUdemy": "Clean Code in Practice - Udemy",
+      "csharpInfnet": "Advanced C# Features - Infnet",
+      "aspDigidata": "ASP.NET C# - Digidata (Rio de Janeiro)"
     }
   },
   "skills": {
     "eyebrow": "Stack / Skills",
     "title": "Strong backend, modern frontend, continuous delivery",
-    "lead": "A snapshot of what I ship in enterprise production — from legacy to modern.",
+    "lead": "A snapshot of what I ship in enterprise production - from legacy to modern.",
     "backendTitle": "Backend",
     "backendText": "C# (10–12), .NET Core/.NET 6/7/8/9, ASP.NET Web API (middlewares, filters, versioning, JWT), Clean Architecture, SOLID, practical DDD, Repository + Unit of Work.",
     "frontendTitle": "Frontend",
@@ -146,7 +146,7 @@
   "contact": {
     "eyebrow": "Contact",
     "title": "Let’s talk.",
-    "lead": "For opportunities and projects, I prefer direct contact. I reply fast — focused on outcomes and delivery.",
+    "lead": "For opportunities and projects, I prefer direct contact. I reply fast - focused on outcomes and delivery.",
     "closing": "To move faster, WhatsApp is the quickest channel. If you prefer, LinkedIn or email work great too.",
     "primary": {
       "eyebrow": "Fastest channel",
@@ -229,7 +229,7 @@
     },
     "items": {
       "angularI18n": {
-        "title": "Angular 20 — i18n with ngx-translate",
+        "title": "Angular 20 - i18n with ngx-translate",
         "meta": "Multi-language (PT/EN/ES)",
         "context": "I built an Angular 20 project with multi-language support to improve accessibility and user experience.",
         "solution": "I implemented internationalization using @ngx-translate/core (TranslateService + JSON files) with language switching and translated content.",
@@ -368,43 +368,43 @@
     },
     "items": {
       "ccaa": {
-        "when": "2024 — Present",
-        "title": "CCAA — Senior Full Stack",
+        "when": "2024 - Present",
+        "title": "CCAA - Senior Full Stack",
         "text": "Built APIs and shared libraries with .NET and Angular, focusing on modularity and reuse. Improved integration/deploy processes with CI/CD and Git."
       },
       "g4f": {
-        "when": "2023 — 2024",
-        "title": "G4F — Senior Development Analyst",
+        "when": "2023 - 2024",
+        "title": "G4F - Senior Development Analyst",
         "text": "Created APIs and libraries in .NET Core; web development with Angular and ASP.NET; worked in squads using Scrum/Azure."
       },
       "mercanet": {
-        "when": "2022 — 2023",
-        "title": "Mercanet — legacy & modernization",
+        "when": "2022 - 2023",
+        "title": "Mercanet - legacy & modernization",
         "text": "Maintained and evolved legacy systems (WebForms, NHibernate, Knockout) and incrementally migrated features to modern technologies."
       },
       "brq": {
-        "when": "2020 — 2022",
+        "when": "2020 - 2022",
         "title": "BRQ / Líder Insurance",
         "text": "Supported and evolved ASP.NET/WebForms systems for the legal area, improving performance and doing gradual refactoring."
       },
       "quality": {
         "when": "2019",
-        "title": "Quality S.A. (Wilson Sons) — Mid-level Development Analyst",
+        "title": "Quality S.A. (Wilson Sons) - Mid-level Development Analyst",
         "text": "HR solutions focused on PLR, using web stack and Oracle."
       },
       "tivit": {
-        "when": "2017 — 2019",
-        "title": "TIVIT — Mid-level Development Analyst",
+        "when": "2017 - 2019",
+        "title": "TIVIT - Mid-level Development Analyst",
         "text": "Vehicle tracking solutions, working with mission-critical legacy systems (ASP.NET + Oracle + Android Java)."
       },
       "ctis": {
-        "when": "2016 — 2017",
-        "title": "CTIS Tecnologia — Mid-level Development Analyst",
+        "when": "2016 - 2017",
+        "title": "CTIS Tecnologia - Mid-level Development Analyst",
         "text": "Education systems (Rio public schools) using C#/.NET and SQL Server."
       },
       "confitec": {
-        "when": "2010 — 2015",
-        "title": "Confitec — Intern → Mid-level Analyst",
+        "when": "2010 - 2015",
+        "title": "Confitec - Intern → Mid-level Analyst",
         "text": "Full development lifecycle in enterprise systems (real estate sector). Strong legacy work, critical production fixes and SQL Server optimizations."
       }
     }

@@ -25,7 +25,7 @@
 
     <text x="20" y="130" opacity="0">
       <animate attributeName="opacity" from="0" to="1" dur="0.5s" begin="3s" fill="freeze" />
-      <tspan fill="#6e7681">4</tspan>  integrações complexas e <tspan fill="#ffa657">CI/CD</tspan> — 
+      <tspan fill="#6e7681">4</tspan>  integrações complexas e <tspan fill="#ffa657">CI/CD</tspan> - 
     </text>
 
     <text x="20" y="160" opacity="0">
